@@ -1,0 +1,282 @@
+.iphone {
+    background-color: #eaeced;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .iphone .div {
+    background-color: #eaeced;
+    width: 390px;
+    height: 844px;
+    position: relative;
+  }
+  
+  .iphone .overlap {
+    position: absolute;
+    width: 390px;
+    height: 100px;
+    top: 0;
+    left: 0;
+    background-color: #1a0040;
+  }
+  
+  .iphone .logo {
+    position: absolute;
+    width: 109px;
+    height: 41px;
+    top: 50px;
+    left: 141px;
+    background-color: #ffffff;
+    border-radius: 76px;
+  }
+  
+  .iphone .logo-omnes-education {
+    position: absolute;
+    width: 89px;
+    height: 23px;
+    top: 10px;
+    left: 10px;
+    object-fit: cover;
+  }
+  
+  .iphone .navbtn {
+    position: absolute;
+    width: 43px;
+    height: 27px;
+    top: 60px;
+    left: 322px;
+  }
+  
+  .iphone .rectangle {
+    position: absolute;
+    width: 43px;
+    height: 7px;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    border-radius: 21px;
+  }
+  
+  .iphone .rectangle-2 {
+    position: absolute;
+    width: 43px;
+    height: 7px;
+    top: 10px;
+    left: 0;
+    background-color: #ffffff;
+    border-radius: 21px;
+  }
+  
+  .iphone .rectangle-3 {
+    position: absolute;
+    width: 43px;
+    height: 7px;
+    top: 20px;
+    left: 0;
+    background-color: #ffffff;
+    border-radius: 21px;
+  }
+  
+  .iphone .overlap-group {
+    position: absolute;
+    width: 229px;
+    height: 52px;
+    top: 167px;
+    left: 30px; /* Nouvelle valeur décalée vers la gauche */
+}
+  
+  .iphone .text-wrapper {
+    position: absolute;
+    width: 118px;
+    top: 0;
+    left: 53px;
+    font-family: "Outfit-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .iphone .rectangle-4 {
+    position: absolute;
+    width: 229px;
+    height: 26px;
+    top: 26px;
+    left: 0;
+    background-color: #ffffff;
+    border-radius: 12px;
+  }
+  
+  .iphone .rectangle-5 {
+    position: absolute;
+    width: 229px;
+    height: 26px;
+    top: 370px;
+    left: 81px;
+    background-color: #ffffff;
+    border-radius: 12px;
+  }
+  
+  .iphone .overlap-2 {
+    position: absolute;
+    width: 229px;
+    height: 52px;
+    top: 253px;
+    left: 81px;
+  }
+  
+  .iphone .text-wrapper-2 {
+    position: absolute;
+    width: 168px;
+    top: 0;
+    left: 37px;
+    font-family: "Outfit-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .iphone .text-wrapper-3 {
+    position: absolute;
+    width: 150px;
+    top: 339px;
+    left: 119px;
+    font-family: "Outfit-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .iphone .overlap-3 {
+    position: absolute;
+    width: 150px;
+    height: 55px;
+    top: 424px;
+    left: 43px;
+  }
+  
+  .iphone .rectangle-6 {
+    position: absolute;
+    width: 98px;
+    height: 26px;
+    top: 29px;
+    left: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+  }
+  
+  .iphone .text-wrapper-4 {
+    position: absolute;
+    width: 150px;
+    top: 0;
+    left: 0;
+    font-family: "Outfit-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .iphone .rectangle-7 {
+    position: absolute;
+    width: 98px;
+    height: 26px;
+    top: 453px;
+    left: 223px;
+    background-color: #ffffff;
+    border-radius: 12px;
+  }
+  
+  .iphone .text-wrapper-5 {
+    position: absolute;
+    width: 150px;
+    top: 423px;
+    left: 197px;
+    font-family: "Outfit-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .iphone .rectangle-8 {
+    position: absolute;
+    width: 390px;
+    height: 88px;
+    top: 756px;
+    left: 0;
+    background-color: #1a0040;
+  }
+  
+  .iphone .se-connecter {
+    position: absolute;
+    width: 250px;
+    height: 52px;
+    top: 592px;
+    left: 72px;
+  }
+  
+  .iphone .overlap-group-2 {
+    position: relative;
+    width: 248px;
+    height: 52px;
+  }
+  
+  .iphone .rectangle-9 {
+    position: absolute;
+    width: 245px;
+    height: 51px;
+    top: 0;
+    left: 0;
+    background-color: #1a0040;
+    border-radius: 42px;
+  }
+  
+  .iphone .text-wrapper-6 {
+    position: absolute;
+    width: 245px;
+    top: 11px;
+    left: 3px;
+    font-family: "Outfit-Bold", Helvetica;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 20px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .iphone .input-rectangle {
+    position: absolute;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    padding: 5px 10px;
+    font-family: "Outfit-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 16px;
+    outline: none;
+    text-align: center;
+    width: 229px; /* Default width, adjust if necessary */
+    height: 26px; /* Default height, adjust if necessary */
+}
+
+.iphone .input-rectangle::placeholder {
+    color: #aaa;
+}
+
