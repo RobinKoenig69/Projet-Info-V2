@@ -20,10 +20,23 @@
                 <span></span>
             </div>
         </div>
-        <div class="welcome-message">Bienvenue chez BlaBla Omnes</div>
         <div class="bottom-bar"></div>
         <div class="avatar"></div>
         <img src="../../images/imagevoiture.png" alt="Placeholder image" class="placeholder-image"/>
+            <div class="entry">
+                <div class="overlap">
+                    <input type="email" name="email" class="text-input" placeholder="E-mail" required>
+                </div>
+                <div class="overlap-3">
+                    <input type="password" name="pwd" class="text-input" placeholder="Mot de passe" required>
+                </div>
+                <div class="se-connecter">
+                    <button type="submit" class="overlap-group-2">
+                        <div class="rectangle-2"></div>
+                        <div class="text-wrapper-5">Suivant</div>
+                    </button>
+                </div>
+            </div>
         <div class="small-circle"></div>
     </div>
 </body>
