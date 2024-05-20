@@ -23,11 +23,7 @@
         <div class="welcome-message">Bienvenue chez BlaBla Omnes</div>
         <div class="bottom-bar"></div>
         <div class="avatar"></div>
-        <div class="button-container">
-            <div class="button">Se connecter</div>
-            <div class="button-outline">S’inscrire</div>
-        </div>
-        <img src="../../../images/imagevoiture.png" alt="Placeholder image" class="placeholder-image"/>
+        <img src="../../images/imagevoiture.png" alt="Placeholder image" class="placeholder-image"/>
         <div class="small-circle"></div>
     </div>
 </body>

@@ -12,7 +12,7 @@
         <div class="top-bar">
             <div class="logo-container">
                 <div class="logo-background">
-                <img src="../../../images/Logo_omnes.png" alt="Logo" />
+                    <img src="../../../images/Logo_omnes.png" alt="Logo" />
                 </div>
             <div class="menu-icon">
                 <span></span>
@@ -20,7 +20,7 @@
                 <span></span>
             </div>
         </div>
-        <div class="welcome-message">Bienvenue chez BlaBla Omnes</div>
+            <p class="welcome-message">Bienvenue chez BlaBla Omnes</p>
         <div class="bottom-bar"></div>
         <div class="avatar"></div>
         <div class="button-container">
