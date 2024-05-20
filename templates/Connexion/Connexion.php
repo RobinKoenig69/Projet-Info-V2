@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>BlaBla Omnes</title>
     <div class="logo">
-    <link rel="stylesheet" href="pagePrincav.css">
+    <link rel="stylesheet" href="Connexion.css">
 </div>
 </head>
 <body>
@@ -24,8 +24,8 @@
         <div class="bottom-bar"></div>
         <div class="avatar"></div>
         <div class="button-container">
-            <a class="button" href="../../Connexion/Connexion.php">Se connecter</a>
-            <a class="button-outline" href="../../inscription/ins1/inscription1.php">S’inscrire</a>
+            <div class="button">Se connecter</div>
+            <div class="button-outline">S’inscrire</div>
         </div>
         <img src="../../../images/imagevoiture.png" alt="Placeholder image" class="placeholder-image"/>
         <div class="small-circle"></div>

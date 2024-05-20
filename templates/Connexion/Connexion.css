@@ -99,7 +99,6 @@ body {
     font-weight: 700;
     line-height: 51px; /* Alignement vertical du texte à l'intérieur du bouton */
     cursor: pointer; /* Change le curseur en main quand survolé */
-    text-decoration: none;
 }
 
 .button-outline {

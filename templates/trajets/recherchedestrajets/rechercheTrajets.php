@@ -40,5 +40,30 @@
             <div class="rectangle-6"></div>
         </div>
     </div>
+
+    <?php
+    // Informations de connexion à la base de données
+    $serveur = 'localhost';
+    $utilisateur = 'root';
+    $mot_de_passe = 'root';
+    $base_de_donnees = 'test_projet';
+
+    try {
+        // Création d'une connexion PDO
+        $connexion = new PDO("mysql:host=$serveur;dbname=$base_de_donnees", $utilisateur, $mot_de_passe);
+
+        // Définition du mode de gestion des erreurs
+        $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        echo "Connexion réussie !";
+
+        // Exécution d'une requête SQL
+        $requete = $connexion->query('SELECT * FROM utilisateur');
+
+    } catch(PDOException $e) {
+        // En cas d'erreur, affichage du message d'erreur
+        echo "Erreur de connexion : " . $e->getMessage();
+    }
+    ?>
 </body>
 </html>
