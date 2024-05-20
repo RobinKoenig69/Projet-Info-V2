@@ -2,11 +2,12 @@ body {
     margin: 0;
     padding: 0;
     font-family: Outfit, sans-serif;
+    background: #EAECED;
 }
 
 .main-container {
-    width: 390px;
-    height: 844px;
+    width: 100%;
+    height: 100%;
     position: relative;
     background: #EAECED;
 }
@@ -16,8 +17,8 @@ body {
 }
 
 .top-bar {
-    width: 390px;
-    height: 101px;
+    width: 100%;
+    height: 10vh;
     background: #1A0040;
 }
 
@@ -50,68 +51,32 @@ body {
     background: linear-gradient(0deg, white 0%, white 100%);
 }
 
-.welcome-message {
-    width: 367px;
-    height: 149px;
-    left: 11px;
-    top: 132px;
-    text-align: center;
-    color: #1A0040;
-    font-size: 39px;
-    font-weight: 700;
-    word-wrap: break-word;
-}
-
 .bottom-bar {
-    width: 390px;
-    height: 88px;
-    top: 756px;
+    width: 100%;
+    height: 10vh;
+    position: fixed;
+    bottom: 0;
     background: #1A0040;
 }
 
 .avatar {
-    width: 115px;
-    height: 115px;
-    left: 137px;
-    top: 698px;
+    width: 10vh;
+    height: 10vh;
+    left: 50%;
     background: white;
     border-radius: 9999px;
-}
+    transform: translate(-50%); /* Centre horizontalement et verticalement */
+    position: fixed;
+    bottom: 5vh;
 
-.button-container {
-    display: flex; /* Utilise flexbox pour aligner les éléments fils */
-    justify-content: space-evenly; /* Répartit l'espace également entre les éléments */
-    align-items: center; /* Centre les éléments verticalement */
-    width: 390px; /* Définissez la largeur pour contenir les deux boutons */
-    left: 0px;
-    top: 587px; /* Ajustez cette valeur en fonction de la position souhaitée dans le conteneur principal */
-    position: absolute;
-}
-
-.button, .button-outline {
-    width: 145px; /* Largeur fixe pour chaque bouton */
-    height: 51px; /* Hauteur fixe pour chaque bouton */
-    background: #9190DC;
-    border-radius: 42px;
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 51px; /* Alignement vertical du texte à l'intérieur du bouton */
-    cursor: pointer; /* Change le curseur en main quand survolé */
-}
-
-.button-outline {
-    background: white;
-    color: #9190DC;
-    border: solid 1px #9190DC; /* Ajoute une bordure pour le bouton 'S'inscrire' pour le distinguer */
 }
 
 .placeholder-image {
     width: 201px;
     height: 179px;
-    left: 98px;
-    top: 120px;
+    left: 50%;
+    top: 15vh; /* Centre verticalement */
+    transform: translate(-50%); /* Centre horizontalement et verticalement */
 }
 
 .small-circle {
@@ -123,14 +88,13 @@ body {
     border-radius: 9999px;
 }
 
-
 .logo-container {
     position: absolute;
-    top: 35px; /* Augmentez cette valeur pour baisser le logo davantage si nécessaire */
+    top: 2vh; /* Augmentez cette valeur pour baisser le logo davantage si nécessaire */
     left: 50%; /* Maintient le logo centré horizontalement */
     transform: translateX(-50%); /* Centre le logo horizontalement par rapport à sa propre largeur */
-    width: 108.73px;
-    height: 41.34px;
+    width: 30%;
+    height: 60%;
 }
 
 .logo-background {
