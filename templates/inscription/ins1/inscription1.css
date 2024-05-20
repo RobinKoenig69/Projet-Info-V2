@@ -4,25 +4,25 @@
     flex-direction: row;
     justify-content: center;
     width: 100%;
-  }
-  
-  .page-inscription .div {
+}
+
+.page-inscription .div {
     background-color: #eaeced;
     width: 390px;
     height: 844px;
     position: relative;
-  }
-  
-  .page-inscription .rectangle {
+}
+
+.page-inscription .rectangle {
     width: 390px;
     height: 88px;
     top: 756px;
     background-color: #1a0040;
     position: absolute;
     left: 0;
-  }
-  
-  .page-inscription .overlap {
+}
+
+.page-inscription .overlap {
     position: absolute;
     width: 282px;
     height: 39px;
@@ -30,9 +30,9 @@
     left: 56px;
     background-color: #d9d9d9;
     border-radius: 20px;
-  }
-  
-  .page-inscription .text-wrapper {
+}
+
+.page-inscription .text-wrapper {
     position: absolute;
     width: 250px;
     top: 7px;
@@ -44,9 +44,9 @@
     text-align: center;
     letter-spacing: 0;
     line-height: normal;
-  }
-  
-  .page-inscription .overlap-group {
+}
+
+.page-inscription .overlap-group {
     position: absolute;
     width: 282px;
     height: 39px;
@@ -54,9 +54,9 @@
     left: 56px;
     background-color: #d9d9d9;
     border-radius: 20px;
-  }
-  
-  .page-inscription .text-wrapper-2 {
+}
+
+.page-inscription .text-wrapper-2 {
     position: absolute;
     width: 250px;
     top: 7px;
@@ -68,9 +68,9 @@
     text-align: center;
     letter-spacing: 0;
     line-height: normal;
-  }
-  
-  .page-inscription .div-wrapper {
+}
+
+.page-inscription .div-wrapper {
     position: absolute;
     width: 226px;
     height: 39px;
@@ -78,9 +78,9 @@
     left: 88px;
     background-image: url(./img/rectangle-9.svg);
     background-size: 100% 100%;
-  }
-  
-  .page-inscription .text-wrapper-3 {
+}
+
+.page-inscription .text-wrapper-3 {
     position: absolute;
     width: 200px;
     top: 7px;
@@ -92,9 +92,9 @@
     text-align: center;
     letter-spacing: 0;
     line-height: normal;
-  }
-  
-  .page-inscription .overlap-2 {
+}
+
+.page-inscription .overlap-2 {
     position: absolute;
     width: 226px;
     height: 39px;
@@ -102,9 +102,9 @@
     left: 80px;
     background-color: #d9d9d9;
     border-radius: 20px;
-  }
-  
-  .page-inscription .text-wrapper-4 {
+}
+
+.page-inscription .text-wrapper-4 {
     position: absolute;
     width: 201px;
     top: 7px;
@@ -116,9 +116,9 @@
     text-align: center;
     letter-spacing: 0;
     line-height: normal;
-  }
-  
-  .page-inscription .overlap-3 {
+}
+
+.page-inscription .overlap-3 {
     position: absolute;
     width: 282px;
     height: 39px;
@@ -126,23 +126,23 @@
     left: 52px;
     background-image: url(./img/rectangle-26.svg);
     background-size: 100% 100%;
-  }
-  
-  .page-inscription .se-connecter {
+}
+
+.page-inscription .se-connecter {
     position: absolute;
     width: 149px;
     height: 52px;
     top: 576px;
     left: 121px;
-  }
-  
-  .page-inscription .overlap-group-2 {
+}
+
+.page-inscription .overlap-group-2 {
     position: relative;
     width: 147px;
     height: 52px;
-  }
-  
-  .page-inscription .rectangle-2 {
+}
+
+.page-inscription .rectangle-2 {
     width: 145px;
     height: 51px;
     top: 0;
@@ -150,9 +150,9 @@
     border-radius: 42px;
     position: absolute;
     left: 0;
-  }
-  
-  .page-inscription .text-wrapper-5 {
+}
+
+.page-inscription .text-wrapper-5 {
     position: absolute;
     width: 145px;
     top: 11px;
@@ -164,18 +164,18 @@
     text-align: center;
     letter-spacing: 0;
     line-height: normal;
-  }
-  
-  .page-inscription .overlap-4 {
+}
+
+.page-inscription .overlap-4 {
     position: absolute;
     width: 390px;
     height: 88px;
     top: 0;
     left: 0;
     background-color: #1a0040;
-  }
-  
-  .page-inscription .logo {
+}
+
+.page-inscription .logo {
     position: absolute;
     width: 109px;
     height: 41px;
@@ -183,26 +183,26 @@
     left: 141px;
     background-color: #ffffff;
     border-radius: 76px;
-  }
-  
-  .page-inscription .logo-omnes-education {
+}
+
+.page-inscription .logo-omnes-education {
     position: absolute;
     width: 89px;
     height: 23px;
     top: 10px;
     left: 10px;
     object-fit: cover;
-  }
-  
-  .page-inscription .navbtn {
+}
+
+.page-inscription .navbtn {
     position: absolute;
     width: 43px;
     height: 27px;
     top: 32px;
     left: 315px;
-  }
-  
-  .page-inscription .rectangle-3 {
+}
+
+.page-inscription .rectangle-3 {
     width: 43px;
     height: 7px;
     top: 0;
@@ -210,9 +210,9 @@
     border-radius: 21px;
     position: absolute;
     left: 0;
-  }
-  
-  .page-inscription .rectangle-4 {
+}
+
+.page-inscription .rectangle-4 {
     width: 43px;
     height: 7px;
     top: 10px;
@@ -220,9 +220,9 @@
     border-radius: 21px;
     position: absolute;
     left: 0;
-  }
-  
-  .page-inscription .rectangle-5 {
+}
+
+.page-inscription .rectangle-5 {
     width: 43px;
     height: 7px;
     top: 20px;
@@ -230,15 +230,15 @@
     border-radius: 21px;
     position: absolute;
     left: 0;
-  }
+}
 
-  .page-inscription .div-wrapper {
+.page-inscription .div-wrapper {
     position: absolute;
-    width: 282px; 
+    width: 282px;
     height: 39px;
     top: 261px;
-    left: 56px; 
-    background-color: #d9d9d9; 
+    left: 56px;
+    background-color: #d9d9d9;
     border-radius: 20px;
 }
 
@@ -248,7 +248,7 @@
     height: 39px;
     top: 411px;
     left: 56px;
-    background-color: #d9d9d9; 
+    background-color: #d9d9d9;
     border-radius: 20px;
 }
 

@@ -72,8 +72,8 @@ body {
 }
 
 .placeholder-image {
-    width: 201px;
-    height: 179px;
+    max-width: 12%;
+    height: auto;
     left: 50%;
     top: 15vh; /* Centre verticalement */
     transform: translate(-50%); /* Centre horizontalement et verticalement */
@@ -111,4 +111,67 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); /* Centre l'image parfaitement dans le logo-background */
+}
+
+.connexion {
+    position: absolute;
+    top: 42vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Outfit-Bold", Helvetica;
+    font-weight: 800;
+    color: #1a0040;
+    font-size: 3vw;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.overlap {
+    position: absolute;
+    top: 55vh;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centre l'image parfaitement dans le logo-background */
+    background-color: #d9d9d9;
+    border-radius: 20px; /* Ajoute des coins arrondis de 20px */
+    width: 25%;
+    height: 3em;
+}
+
+.overlap-2 {
+    position: absolute;
+    top: 70vh;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centre l'image parfaitement dans le logo-background */
+    background-color: #d9d9d9;
+    border-radius: 20px; /* Ajoute des coins arrondis de 20px */
+    width: 25%;
+    height: 3em;
+}
+
+.text-input {
+    width: 100%; /* Take up all available space in the container */
+    height: 100%; /* Full height to match the container */
+    border: none; /* Remove default border */
+    background-color: transparent; /* Transparent background */
+    border-radius: 20px; /* Rounded corners like the container */
+    padding: 0 20px; /* Padding on left and right */
+    font-family: "Outfit-Bold", Helvetica;
+    font-size: 19px; /* Matching font size */
+    color: #000; /* Text color */
+}
+
+@media screen and (max-width: 700px) {
+    .connexion {
+        font-size: 40px;
+    }
+
+    .overlap{
+        width: 282px;
+        height: 39px;
+    }
+    .overlap-2{
+        width: 282px;
+        height: 39px;
+    }
 }
