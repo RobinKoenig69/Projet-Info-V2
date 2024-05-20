@@ -9,7 +9,7 @@
 <div class="iphone">
     <div class="div">
         <div class="overlap">
-            <div class="logo"><img class="logo-omnes-education" src="/images/imagevoiture.png" /></div>
+            <div class="logo"><img class="logo-omnes-education" src="../../../images/imagevoiture.png" /></div>
             <div class="navbtn">
                 <div class="rectangle"></div>
                 <div class="rectangle-2"></div>

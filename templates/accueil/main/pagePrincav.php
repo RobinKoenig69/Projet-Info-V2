@@ -12,7 +12,7 @@
         <div class="top-bar">
             <div class="logo-container">
                 <div class="logo-background">
-                <img src="/images/Logo_omnes.png" alt="Logo" />
+                <img src="../../../images/Logo_omnes.png" alt="Logo" />
                 </div>
             <div class="menu-icon">
                 <span></span>

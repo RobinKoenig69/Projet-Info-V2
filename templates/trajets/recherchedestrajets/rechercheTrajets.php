@@ -11,7 +11,7 @@
             <header class="header">
                 <div class="logo">
                     <div class="overlap-group">
-                        <img class="logo-omnes-education" src="img/logo-omnes-e-ducation-2.png" />
+                        <img class="logo-omnes-education" src="../../../images/Logo_omnes.png" />
                     </div>
                     <div class="navbtn">
                         <div class="rectangle"></div>

@@ -26,7 +26,7 @@
         <div id="map"></div>
     </div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZPX2ee3ukXiDkpm3ZSUTYzeuJn-ttahU&libraries=places"></script>
-
+    <br>
     <br>
     <br>
     <br>

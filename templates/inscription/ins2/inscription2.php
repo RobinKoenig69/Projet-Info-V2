@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="overlap-2">
-          <div class="logo"><img class="logo-omnes-education" src="" /></div>
+          <div class="logo"><img class="logo-omnes-education" src="../../../images/Logo_omnes.png" /></div>
           <div class="navbtn">
             <div class="rectangle-3"></div>
             <div class="rectangle-4"></div>
@@ -39,7 +39,6 @@
                 </div>
             </div>
             <input type="file" id="fileInput" style="display: none;" onchange="handleFileSelect(event)"/>
-        
         </div>
         <div class="overlap-wrapper">
             <div class="div-wrapper" onclick="document.getElementById('fileInputProfile').click();">
