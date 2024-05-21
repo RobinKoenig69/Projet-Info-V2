@@ -10,7 +10,7 @@
     <div class="top-bar">
         <div class="logo-container">
             <div class="logo-background">
-                <img src="../../../images/Logo_omnes.png" alt="Logo" />
+                <img src="../../images/Logo_omnes.png" alt="Logo" />
             </div>
         </div>
         <div class="menu-icon">
@@ -33,11 +33,8 @@
         <div class="overlap-2">
             <input type="password" name="pwd" class="text-input" placeholder="Mot de passe" required>
         </div>
-        <div class="se-connecter">
-            <button type="submit" class="overlap-group-2">
-                <div class="rectangle-2"></div>
-                <div class="text-wrapper-5">Suivant</div>
-            </button>
+        <div class="button-container">
+            <a class="button" href="../../Connexion/Connexion.php">Se connecter</a>
         </div>
     </div>
 </div>
