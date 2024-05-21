@@ -1,33 +1,122 @@
 <?php
-include '../../../index2.php';  // Connexion à la base de données
+require_once '../../BDD_login.php';  // Connexion à la base de données
 
-try {
-    // Récupérer le dernier user_ID utilisé et l'incrémenter
-    $query = $connexion->query("SELECT MAX(user_ID) as max_id FROM utilisateur");
-    $result = $query->fetch();
-    $new_user_id = $result['max_id'] + 1;
+$nom = $prenom = $email = $num_tel = $password = "";
+$nom_err = $password_err = $prenom_err = $email_err = $num_tel_err = "";
 
-    // Données du formulaire
-    $nom = htmlspecialchars($_POST['nom']);
-    $prenom = htmlspecialchars($_POST['prenom']);
-    $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
-    $num_tel = htmlspecialchars($_POST['num_tel']);
-    $pwd = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
+// Processing form data when form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Préparation de la requête SQL d'insertion
-    $sql = "INSERT INTO utilisateur (user_ID, nom, prenom, email, num_tel, pwd, user_type, created_at, updated_at)
-            VALUES (?, ?, ?, ?, ?, ?, 'passager', NOW(), NOW())";
-
-    $stmt = $connexion->prepare($sql);
-    if ($stmt->execute([$new_user_id, $nom, $prenom, $email, $num_tel, $pwd])) {
-        echo "Nouvel enregistrement créé avec succès.";
+    // Validate username
+    if (empty(trim($_POST["nom"]))) {
+        $nom_err = "Please enter a family name.";
+    } elseif (!preg_match('/^[a-zA-Z]+$/', trim($_POST["nom"]))) {
+        $nom_err = "Username can only contain letters.";
     } else {
-        echo "Erreur lors de l'inscription : " . $stmt->errorInfo()[2];
+        $nom = trim($_POST["nom"]);
     }
-} catch (PDOException $e) {
-    echo "Erreur de connexion : " . $e->getMessage();
+
+    // Validate prenom
+    if (empty(trim($_POST["prenom"]))) {
+        $prenom_err = "Please enter a name.";
+    } elseif (!preg_match('/^[a-zA-Z]+$/', trim($_POST["prenom"]))) {
+        $prenom_err = "Name can only contain letters.";
+    } else {
+        $prenom = trim($_POST["prenom"]);
+    }
+
+    // Validate email
+    if (empty(trim($_POST["email"]))) {
+        $email_err = "Please enter an email.";
+    } else {
+        $email = trim($_POST["email"]);
+    }
+
+    // Validate num_tel
+    if (empty(trim($_POST["num_tel"]))) {
+        $num_tel_err = "Please enter a phone number.";
+    } elseif (!preg_match('/^[0-9]+$/', trim($_POST["num_tel"]))) {
+        $num_tel_err = "Phone number can only contain numbers.";
+    } else {
+        $num_tel = trim($_POST["num_tel"]);
+    }
+
+    // Validate password
+    if (empty(trim($_POST["password"]))) {
+        $password_err = "Please enter a password.";
+    } elseif (strlen(trim($_POST["password"])) < 6) {
+        $password_err = "Password must have at least 6 characters.";
+    } else {
+        $password = trim($_POST["password"]);
+    }
+
+    {
+        // Prepare a select statement
+        $sql = "SELECT user_ID FROM utilisateur WHERE nom = :nom";
+
+        if($stmt = $pdo->prepare($sql)){
+            // Bind variables to the prepared statement as parameters
+            $stmt->bindParam(":nom", $param_nom, PDO::PARAM_STR);
+
+            // Set parameters
+            $param_nom = trim($_POST["nom"]);
+
+            // Attempt to execute the prepared statement
+            if($stmt->execute()){
+                if($stmt->rowCount() == 1){
+                    $nom_err = "This username is already taken.";
+                } else{
+                    $nom = trim($_POST["nom"]);
+                }
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+
+            // Close statement
+            unset($stmt);
+        }
+    }
+
+    // Check input errors before inserting in database
+    if (empty($nom_err) && empty($prenom_err) && empty($email_err) && empty($num_tel_err) && empty($password_err)) {
+
+        // Prepare an insert statement
+        $sql = "INSERT INTO utilisateur (nom, prenom, email, num_tel, pwd) VALUES (:nom, :prenom, :email, :num_tel, :password)";
+
+        if ($stmt = $pdo->prepare($sql)) {
+            // Bind variables to the prepared statement as parameters
+            $stmt->bindParam(":nom", $param_nom, PDO::PARAM_STR);
+            $stmt->bindParam(":prenom", $param_prenom, PDO::PARAM_STR);
+            $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
+            $stmt->bindParam(":num_tel", $param_num_tel, PDO::PARAM_STR);
+            $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
+
+            // Set parameters
+            $param_nom = $nom;
+            $param_prenom = $prenom;
+            $param_email = $email;
+            $param_num_tel = $num_tel;
+            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+
+            // Attempt to execute the prepared statement
+            if ($stmt->execute()) {
+                // Redirect to login page
+                header("location: login.php");
+            } else {
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+
+            // Close statement
+            unset($stmt);
+        }
+    }
+
+    // Close connection
+    unset($pdo);
 }
 ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,19 +128,24 @@ try {
     <div class="page-inscription">
         <div class="div">
             <div class="overlap">
-                <input type="email" name="email" class="text-input" placeholder="E-mail" required>
+                <input type="email" name="email" class="text-input <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>" placeholder="E-mail" required>
+                <span class="invalid-feedback"><?php echo $email_err; ?></span>
             </div>
             <div class="overlap-group">
-                <input type="tel" name="num_tel" class="text-input" placeholder="Numero de téléphone" required>
+                <input type="tel" name="num_tel" class="text-input <?php echo (!empty($num_tel_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $num_tel; ?>" placeholder="Numero de téléphone" required>
+                <span class="invalid-feedback"><?php echo $num_tel_err; ?></span>
             </div>
             <div class="div-wrapper">
-                <input type="text" name="nom" class="text-input" placeholder="Nom" required>
+                <input type="text" name="nom" class="text-input <?php echo (!empty($nom_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $nom; ?>" placeholder="Nom" required >
+                <span class="invalid-feedback"><?php echo $nom_err; ?></span>
             </div>
             <div class="overlap-2">
-                <input type="text" name="prenom" class="text-input" placeholder="Prenom" required>
+                <input type="text" name="prenom" class="text-input <?php echo (!empty($prenom_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $prenom; ?>" placeholder="Prenom" required>
+                <span class="invalid-feedback"><?php echo $prenom_err; ?></span>
             </div>
             <div class="overlap-3">
-                <input type="password" name="pwd" class="text-input" placeholder="Mot de passe" required>
+                <input type="password" name="password" class="text-input <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>" placeholder="Mot de passe" required>
+                <span class="invalid-feedback"><?php echo $password_err; ?></span>
             </div>
             <div class="se-connecter">
                 <button type="submit" class="overlap-group-2">
