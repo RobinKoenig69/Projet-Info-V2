@@ -116,7 +116,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -124,6 +123,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="inscription1.css" />
 </head>
 <body>
+<div class="connexion">
+    <div>Inscrivez-vous :</div>
+</div>
+    <div class="top-bar">
+        <div class="logo-container">
+            <div class="logo-background">
+                <img src="../../../images/Logo_omnes.png" alt="Logo" />
+            </div>
+        </div>
+        <div class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="bottom-bar"></div>
+    <div class="avatar"></div>
 <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
     <div class="page-inscription">
         <div class="div">
