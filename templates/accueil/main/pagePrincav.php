@@ -25,10 +25,14 @@
         <div class="bottom-bar"></div>
         <div class="avatar"></div>
 
-        <a class="button" href="../../Connexion/Connexion.php">Se connecter</a>
-        <a class="button-outline" href="../../inscription/ins1/inscription1.php">S’inscrire</a>
+        <div class="connexion">
+            <div>Bienvenue sur le site de BlaBla-Omnes :</div>
         </div>
-
+        <div class="button-container">
+            <a class="button" href="../../Connexion/Connexion.php">Se connecter</a>
+            <a class="button-outline" href="../../inscription/ins1/inscription1.php">S’inscrire</a>
+        </div>
+    </div>
     </div>
 </body>
 </html>

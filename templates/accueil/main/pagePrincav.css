@@ -11,15 +11,31 @@
     word-wrap: break-word;
 }
 
+.button{
+    width: 145px; /* Largeur fixe pour chaque bouton */
+    height: 51px; /* Hauteur fixe pour chaque bouton */
+    background: #9190DC;
+    border-radius: 42px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 51px; /* Alignement vertical du texte à l'intérieur du bouton */
+    cursor: pointer; /* Change le curseur en main quand survolé */
+    text-decoration: none;
+}
+
 .button-container {
     display: flex; /* Utilise flexbox pour aligner les éléments fils */
     justify-content: space-evenly; /* Répartit l'espace également entre les éléments */
     align-items: center; /* Centre les éléments verticalement */
     width: 390px; /* Définissez la largeur pour contenir les deux boutons */
-    left: 0px;
-    top: 587px; /* Ajustez cette valeur en fonction de la position souhaitée dans le conteneur principal */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centre l'image parfaitement dans le logo-background */
+    top: 77vh; /* Ajustez cette valeur en fonction de la position souhaitée dans le conteneur principal */
     align-content: center;
 }
+
 
 .button, .button-outline {
     width: 145px; /* Largeur fixe pour chaque bouton */
@@ -42,9 +58,29 @@
 }
 
 .placeholder-image {
-    width: 201px;
-    height: 179px;
-    left: 98px;
-    top: 304px;
-    align-content: center;
+    max-width: 18%;
+    height: auto;
+    left: 50%;
+    top: 30vh; /* Centre verticalement */
+    transform: translate(-50%); /* Centre horizontalement et verticalement */
+}
+
+@media screen and (max-width: 700px) {
+    .connexion {
+        font-size: 40px;
+    }
+
+    .overlap{
+        width: 282px;
+        height: 39px;
+    }
+    .overlap-2{
+        width: 282px;
+        height: 39px;
+    }
+
+    .placeholder-image{
+        max-width: 25%;
+        height: auto;
+    }
 }
