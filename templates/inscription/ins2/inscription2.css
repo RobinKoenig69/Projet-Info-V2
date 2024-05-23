@@ -4,62 +4,258 @@
     flex-direction: row;
     justify-content: center;
     width: 100%;
-  }
-  
-  .page-inscription .div {
-    background-color: #eaeced;
-    width: 390px;
-    height: 844px;
-    position: relative;
-  }
-  
-  .page-inscription .overlap {
+}
+
+.top-bar, .bottom-bar, .button-container, .logo-container, .menu-icon, .avatar, .small-circle, .placeholder-image {
     position: absolute;
+}
+
+.top-bar {
+    width: 100%;
+    height: 10vh;
+    background: #1A0040;
+}
+
+.logo-container {
+    width: 108.73px;
+    height: 41.34px;
+    left: 143px;
+    top: 46px;
+}
+
+.logo-background {
+    width: 108.73px;
+    height: 41.34px;
+    background: white;
+    border-radius: 76px;
+}
+
+.menu-icon {
+    width: 43px;
+    height: 27px;
+    left: 330px;
+    top: 54px;
+}
+
+.menu-icon span {
+    width: 43px;
+    height: 6.57px;
+    background: white;
+    border-radius: 21px;
+    background: linear-gradient(0deg, white 0%, white 100%);
+}
+
+.bottom-bar {
+    width: 100%;
+    height: 10vh;
+    position: fixed;
+    bottom: 0;
+    background: #1A0040;
+}
+
+.avatar {
+    width: 10vh;
+    height: 10vh;
+    left: 50%;
+    background: white;
+    border-radius: 9999px;
+    transform: translate(-50%); /* Centre horizontalement et verticalement */
+    position: fixed;
+    bottom: 5vh;
+
+}
+
+
+.small-circle {
+    width: 63px;
+    height: 63px;
+    left: 27px;
+    top: 26px;
+    background: #D9D9D9;
+    border-radius: 9999px;
+}
+
+.logo-container {
+    position: absolute;
+    top: 2vh; /* Augmentez cette valeur pour baisser le logo davantage si nécessaire */
+    left: 50%; /* Maintient le logo centré horizontalement */
+    transform: translateX(-50%); /* Centre le logo horizontalement par rapport à sa propre largeur */
+    width: 30%;
+    height: 60%;
+}
+
+.logo-background {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 76px;
+}
+
+.logo-container img {
+    width: 88.88px;
+    height: 22.72px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centre l'image parfaitement dans le logo-background */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Outfit, sans-serif;
+    background: #EAECED;
+}
+
+.page-inscription .rectangle {
     width: 390px;
     height: 88px;
     top: 756px;
+    background-color: #1a0040;
+    position: absolute;
     left: 0;
-    background-color: #1a0040;
-  }
-  
-  .page-inscription .rectangle {
-    height: 88px;
-    background-color: #1a0040;
-  }
-  
-  .page-inscription .overlap-group {
+}
+
+.page-inscription .overlap {
+    position: absolute;
+    width: 25%;
+    height: 3em;
+    top: 27vh;
+    left: 50%;
+    transform: translate(-50%); /* Centre horizontalement et verticalement */
+    background-color: #d9d9d9;
+    border-radius: 20px;
+}
+
+.page-inscription .text-wrapper {
+    position: absolute;
+    width: 250px;
+    top: 7px;
+    left: 20px;
+    font-family: "Outfit-Bold", Helvetica;
+    font-weight: 700;
+    color: #00000066;
+    font-size: 19px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.overlap-group {
+    position: absolute;
+    width: 25%;
+    height: 3em;
+    top: 37vh;
+    left: 50%;
+    transform: translate(-50%); /* Centre horizontalement et verticalement */
+    background-color: #d9d9d9;
+    border-radius: 20px;
+}
+
+.page-inscription .text-wrapper-2 {
+    position: absolute;
+    width: 250px;
+    top: 7px;
+    left: 26px;
+    font-family: "Outfit-Bold", Helvetica;
+    font-weight: 700;
+    color: #00000066;
+    font-size: 19px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.page-inscription .div-wrapper {
+    position: absolute;
+    width: 25%;
+    height: 3em;
+    top: 47vh;
+    left: 50%;
+    transform: translate(-50%); /* Centre horizontalement et verticalement */
+    background-color: #d9d9d9;
+    border-radius: 20px;
+}
+
+.page-inscription .text-wrapper-3 {
+    position: absolute;
+    width: 200px;
+    top: 7px;
+    left: 46px;
+    font-family: "Outfit-Bold", Helvetica;
+    font-weight: 700;
+    color: #00000066;
+    font-size: 19px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.page-inscription .overlap-2 {
+    position: absolute;
+    width: 25%;
+    height: 3em;
+    top: 56vh;
+    left: 50%;
+    transform: translate(-50%); /* Centre horizontalement et verticalement */
+    background-color: #d9d9d9;
+    border-radius: 20px;
+}
+
+.page-inscription .text-wrapper-4 {
+    position: absolute;
+    width: 201px;
+    top: 7px;
+    left: 15px;
+    font-family: "Outfit-Bold", Helvetica;
+    font-weight: 700;
+    color: #00000066;
+    font-size: 19px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.page-inscription .overlap-3 {
+    position: absolute;
+    width: 25%;
+    height: 3em;
+    top: 66vh;
+    left: 50%;
+    background-size: 100% 100%;
+    transform: translate(-50%); /* Centre horizontalement et verticalement */
+    background-color: #d9d9d9;
+    border-radius: 20px;
+}
+
+.page-inscription .se-connecter {
     position: absolute;
     width: 149px;
     height: 52px;
-    top: 570px;
-    left: 123px;
-  }
-  
-  .page-inscription .se-connecter {
-    position: absolute;
-    width: 149px;
-    height: 52px;
-    top: 0;
-    left: 0;
-  }
-  
-  .page-inscription .overlap-group-2 {
+    top: 77vh;
+    left: 50%;
+    transform: translate(-50%); /* Centre horizontalement et verticalement */
+}
+
+.page-inscription .overlap-group-2 {
     position: relative;
     width: 147px;
     height: 52px;
-  }
-  
-  .page-inscription .rectangle-2 {
-    position: absolute;
+    border: #00000066;
+}
+
+.page-inscription .rectangle-2 {
     width: 145px;
     height: 51px;
     top: 0;
-    left: 0;
     background-color: #9190dc;
     border-radius: 42px;
-  }
-  
-  .page-inscription .text-wrapper {
+    position: absolute;
+    left: 0;
+    outline: none;
+}
+
+.page-inscription .text-wrapper-5 {
     position: absolute;
     width: 145px;
     top: 11px;
@@ -71,18 +267,18 @@
     text-align: center;
     letter-spacing: 0;
     line-height: normal;
-  }
-  
-  .page-inscription .overlap-2 {
+}
+
+.page-inscription .overlap-4 {
     position: absolute;
     width: 390px;
     height: 88px;
     top: 0;
     left: 0;
     background-color: #1a0040;
-  }
-  
-  .page-inscription .logo {
+}
+
+.page-inscription .logo {
     position: absolute;
     width: 109px;
     height: 41px;
@@ -90,127 +286,96 @@
     left: 141px;
     background-color: #ffffff;
     border-radius: 76px;
-  }
-  
-  .page-inscription .logo-omnes-education {
+}
+
+.page-inscription .logo-omnes-education {
     position: absolute;
     width: 89px;
     height: 23px;
     top: 10px;
     left: 10px;
     object-fit: cover;
-  }
-  .page-inscription .navbtn {
+}
+
+.page-inscription .navbtn {
     position: absolute;
     width: 43px;
     height: 27px;
     top: 32px;
     left: 315px;
-  }
-  
-  .page-inscription .rectangle-3 {
-    position: absolute;
+}
+
+.page-inscription .rectangle-3 {
     width: 43px;
     height: 7px;
     top: 0;
-    left: 0;
     background-color: #ffffff;
     border-radius: 21px;
-  }
-  
-  .page-inscription .rectangle-4 {
     position: absolute;
+    left: 0;
+}
+
+.page-inscription .rectangle-4 {
     width: 43px;
     height: 7px;
     top: 10px;
-    left: 0;
     background-color: #ffffff;
     border-radius: 21px;
-  }
-  
-  .page-inscription .rectangle-5 {
     position: absolute;
+    left: 0;
+}
+
+.page-inscription .rectangle-5 {
     width: 43px;
     height: 7px;
     top: 20px;
-    left: 0;
     background-color: #ffffff;
     border-radius: 21px;
-  }
-  
-  .page-inscription .profil-picture {
     position: absolute;
-    width: 264px;
-    height: 265px;
-    top: 134px;
-    left: 63px;
-    background-color: #d9d9d9;
-    border-radius: 2000000000px;
-    overflow: hidden;
-  }
-  
-  .page-inscription .overlap-3 {
-    position: relative;
-    height: 344px;
-    top: 44px;
-  }
-  
-  .page-inscription .ellipse {
-    width: 97px;
-    height: 97px;
-    top: 0;
-    left: 83px;
-    border-radius: 48.5px;
-    position: absolute;
-    background-color: #ffffff;
-  }
-  
-  .page-inscription .ellipse-2 {
-    width: 264px;
-    height: 235px;
-    top: 109px;
     left: 0;
-    border-radius: 132px/117.5px;
-    position: absolute;
-    background-color: #ffffff;
-  }
-  
-  .page-inscription .icon-add-circled {
-    position: absolute;
-    width: 48px;
-    height: 48px;
-    top: 74px;
-    left: 108px;
-  }
-  
-  .page-inscription .overlap-wrapper {
-    position: absolute;
-    width: 307px;
-    height: 47px;
-    top: 451px;
-    left: 43px;
-  }
-  
-  .page-inscription .div-wrapper {
-    position: relative;
-    width: 305px;
-    height: 47px;
-    background-color: #1a0040;
-    border-radius: 8px;
-  }
-  
-  .page-inscription .p {
-    position: absolute;
-    width: 305px;
-    top: -5px; /* Ajustez cette valeur pour déplacer le texte vers le haut */
-    left: 0;
+}
+
+
+.text-input {
+    width: 100%; /* Take up all available space in the container */
+    height: 100%; /* Full height to match the container */
+    border: none; /* Remove default border */
+    background-color: transparent; /* Transparent background */
+    border-radius: 20px; /* Rounded corners like the container */
+    padding: 0 20px; /* Padding on left and right */
     font-family: "Outfit-Bold", Helvetica;
-    font-weight: 700;
-    color: #ffffff;
-    font-size: 19px;
+    font-size: 1vw; /* Matching font size */
+    color: #000; /* Text color */
+}
+
+.page-inscription .text-input:focus {
+    outline: none;
+}
+
+.div{
+    height: 100%;
+    width: 100%;
+}
+
+.connexion {
+    position: absolute;
+    top: 20vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Outfit-Bold", Helvetica;
+    font-weight: 800;
+    color: #1a0040;
+    font-size: 3vw;
     text-align: center;
     letter-spacing: 0;
     line-height: normal;
 }
 
-  
+.placeholder-image {
+    position: relative;
+    width: 201px;
+    height: 179px;
+    left: 50%;
+    top: 30vh;
+    transform: translate(-50%);
+}

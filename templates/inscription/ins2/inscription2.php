@@ -1,79 +1,152 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="inscription2.css" />
-  </head>
-  <body>
-    <div class="page-inscription">
-      <div class="div">
-        <div class="overlap"><div class="rectangle"></div></div>
-        <div class="overlap-group">
-          <div class="se-connecter">
-            <div class="overlap-group-2">
-              <div class="rectangle-2"></div>
-              <div class="text-wrapper">S’inscrire</div>
-            </div>
-          </div>
-          <div class="se-connecter">
-            <div class="overlap-group-2">
-              <div class="rectangle-2"></div>
-              <div class="text-wrapper">Suivant</div>
-            </div>
-          </div>
-        </div>
-        <div class="overlap-2">
-          <div class="logo"><img class="logo-omnes-education" src="../../../images/Logo_omnes.png" /></div>
-          <div class="navbtn">
-            <div class="rectangle-3"></div>
-            <div class="rectangle-4"></div>
-            <div class="rectangle-5"></div>
-          </div>
-        </div>
-        <div class="profil-picture">
-            <div class="overlap-3">
-                <div class="ellipse"></div>
-                <div class="ellipse-2"></div>
-                <div class="icon-add-circled" onclick="document.getElementById('fileInput').click();">
-                    <img src="../../../images/plus.svg" alt=""/>
-                </div>
-            </div>
-            <input type="file" id="fileInput" style="display: none;" onchange="handleFileSelect(event)"/>
-        </div>
-        <div class="overlap-wrapper">
-            <div class="div-wrapper" onclick="document.getElementById('fileInputProfile').click();">
-                <p class="p">Ajouter une photo de profil</p>
-            </div>
-            <input type="file" id="fileInputProfile" style="display:none;" onchange="handleFileSelect(event)"/>
-        </div>
-        
-      </div>
-    </div>
-  </body>
-</html>
-<script>
-    function handleFileSelect(event) {
-        var files = event.target.files; // FileList object
-        var output = document.querySelector('.profil-picture .ellipse-2'); // Ajustez si nécessaire
-    
-        for (var i = 0, f; f = files[i]; i++) {
-            if (!f.type.match('image.*')) {
-                continue;
+<?php
+require_once '../../BDD_login.php';  // Connexion à la base de données
+
+$nom = $prenom = $email = $num_tel = $password = "";
+$nom_err = $password_err = $prenom_err = $email_err = $num_tel_err = "";
+$created_at = date('Y-m-d H:i:s');
+$updated_at = date('Y-m-d H:i:s');
+
+// Processing form data when form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    // Validate username
+    if (empty(trim($_POST["nom"]))) {
+        $nom_err = "Please enter a family name.";
+    } elseif (!preg_match('/^[a-zA-Z]+$/', trim($_POST["nom"]))) {
+        $nom_err = "Username can only contain letters.";
+    } else {
+        $nom = trim($_POST["nom"]);
+    }
+
+    // Validate prenom
+    if (empty(trim($_POST["prenom"]))) {
+        $prenom_err = "Please enter a name.";
+    } elseif (!preg_match('/^[a-zA-Z]+$/', trim($_POST["prenom"]))) {
+        $prenom_err = "Name can only contain letters.";
+    } else {
+        $prenom = trim($_POST["prenom"]);
+    }
+
+    // Validate email
+    if (empty(trim($_POST["email"]))) {
+        $email_err = "Please enter an email.";
+    } else {
+        $email = trim($_POST["email"]);
+    }
+
+    // Validate num_tel
+    if (empty(trim($_POST["num_tel"]))) {
+        $num_tel_err = "Please enter a phone number.";
+    } elseif (!preg_match('/^[0-9]+$/', trim($_POST["num_tel"]))) {
+        $num_tel_err = "Phone number can only contain numbers.";
+    } else {
+        $num_tel = trim($_POST["num_tel"]);
+    }
+
+    // Validate password
+    if (empty(trim($_POST["password"]))) {
+        $password_err = "Please enter a password.";
+    } elseif (strlen(trim($_POST["password"])) < 6) {
+        $password_err = "Password must have at least 6 characters.";
+    } else {
+        $password = trim($_POST["password"]);
+    }
+
+    {
+        // Prepare a select statement
+        $sql = "SELECT user_ID FROM utilisateur WHERE nom = :nom";
+
+        if($stmt = $pdo->prepare($sql)){
+            // Bind variables to the prepared statement as parameters
+            $stmt->bindParam(":nom", $param_nom, PDO::PARAM_STR);
+
+            // Set parameters
+            $param_nom = trim($_POST["nom"]);
+
+            // Attempt to execute the prepared statement
+            if($stmt->execute()){
+                if($stmt->rowCount() == 1){
+                    $nom_err = "This username is already taken.";
+                } else{
+                    $nom = trim($_POST["nom"]);
+                }
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
             }
-    
-            var reader = new FileReader();
-    
-            reader.onload = (function(theFile) {
-                return function(e) {
-                    output.style.backgroundImage = 'url(' + e.target.result + ')';
-                    output.style.backgroundSize = 'cover';
-                    output.style.backgroundPosition = 'center';
-                };
-            })(f);
-    
-            reader.readAsDataURL(f);
+
+            // Close statement
+            unset($stmt);
         }
     }
-    </script>
-    
-    
+
+    // Check input errors before inserting in database
+    if (empty($nom_err) && empty($prenom_err) && empty($email_err) && empty($num_tel_err) && empty($password_err)) {
+
+        // Prepare an insert statement
+        $sql = "INSERT INTO utilisateur (nom, prenom, email, num_tel, pwd, created_at, updated_at) VALUES (:nom, :prenom, :email, :num_tel, :password, :created_at, :updated_at)";
+
+        if ($stmt = $pdo->prepare($sql)) {
+            // Bind variables to the prepared statement as parameters
+            $stmt->bindParam(":nom", $param_nom, PDO::PARAM_STR);
+            $stmt->bindParam(":prenom", $param_prenom, PDO::PARAM_STR);
+            $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
+            $stmt->bindParam(":num_tel", $param_num_tel, PDO::PARAM_STR);
+            $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
+            $stmt->bindParam(":created_at", $param_created_at, PDO::PARAM_STR);
+            $stmt->bindParam(":updated_at", $param_updated_at, PDO::PARAM_STR);
+
+            // Set parameters
+            $param_nom = $nom;
+            $param_prenom = $prenom;
+            $param_email = $email;
+            $param_num_tel = $num_tel;
+            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+            $param_created_at = $created_at;
+            $param_updated_at = $updated_at;
+
+            // Attempt to execute the prepared statement
+            if ($stmt->execute()) {
+                // Redirect to login page
+                header("location: ../ins2/inscription2.php");
+            } else {
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+
+            // Close statement
+            unset($stmt);
+        }
+    }
+
+    // Close connection
+    unset($pdo);
+}
+?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="inscription2.css?v=<?php echo time(); ?>">
+    </head>
+<body>
+<div class="connexion">
+    <div>Ajoutez votre photo de profil :</div>
+</div>
+    <div class="top-bar">
+        <div class="logo-container">
+            <div class="logo-background">
+                <img src="../../../images/Logo_omnes.png" alt="Logo" />
+                <script src="inscription2.js"></script>
+            </div>
+        </div>
+        <div class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="bottom-bar"></div>
+    <div class="avatar"></div>
+    <img src="../../../images/imagevoiture.png" alt="Placeholder image" class="placeholder-image"/>
+</body>
+</html>
