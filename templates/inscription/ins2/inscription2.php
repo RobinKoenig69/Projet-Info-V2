@@ -3,20 +3,21 @@
 require_once '../../BDD_login.php';  // Connexion à la base de données
 
 $path = '../../../Stockage/PP/';
+
 $file_err ="";
 
-$file_name ="";
+session_start();
+$email = $_SESSION["email"];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    echo $email;
     if (isset($_FILES['screenshot']) && $_FILES['screenshot']['error'] === 0) {
-
-
-
         // Testons, si le fichier est trop volumineux
         if ($_FILES['screenshot']['size'] > 1000000) {
             $file_err = "L'envoi n'a pas pu être effectué, erreur ou image trop volumineuse";
             return;
         }
+
         // Testons, si l'extension n'est pas autorisée
         $fileInfo = pathinfo($_FILES['screenshot']['name']);
         $extension = $fileInfo['extension'];
@@ -33,22 +34,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // On peut valider le fichier et le stocker définitivement
         move_uploaded_file($_FILES['screenshot']['tmp_name'], $path . basename($_FILES['screenshot']['name']));
 
-        $email = $_GET['email'];
-
         $file_name = $_FILES['screenshot']['name'];
-        echo $file_name;
 
         $stmt = $pdo->prepare("UPDATE utilisateur SET photo_profil = :file_name WHERE email = :email");
-        $stmt->bindParam(':data', $data, PDO::PARAM_LOB);
+        $stmt->bindParam(':file_name', $file_name);
         $stmt->bindParam(':email', $email);
 
         if($stmt->execute()) {
-            //header("location: ../ins3/inscription3.php?email=$email");
+            header("location: ../ins3/inscription3.php?email=$email");
             exit;
         } else {
             $file_err = "Une erreur est survenue lors de l'enregistrement de l'image.";
         }
-
     }
 }
 ?>
