@@ -107,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {
                 // Redirect to login page
-                header("location: ../ins2/inscription2.php");
+                header("location: ../ins2/inscription2.php?email=$email");
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
