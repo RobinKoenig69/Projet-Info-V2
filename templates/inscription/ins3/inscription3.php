@@ -1,68 +1,87 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="inscription3.css" />
-  </head>
-  <body>
-    <div class="page-inscription">
-      <div class="div">
-        <div class="overlap"><div class="rectangle"></div></div>
-        <div class="overlap-group">
-          <div class="se-connecter">
-            <div class="overlap-group-2">
-              <div class="rectangle-2"></div>
-              <div class="text-wrapper">S’inscrire</div>
-            </div>
-          </div>
-          <div class="se-connecter">
-            <div class="overlap-group-2">
-              <div class="rectangle-2"></div>
-              <div class="text-wrapper">S’inscrire</div>
-            </div>
-          </div>
-        </div>
-        <div class="overlap-2">
-          <div class="logo"><img class="logo-omnes-education" src="../../../images/Logo_omnes.png" /></div>
-          <div class="navbtn">
-            <div class="rectangle-3"></div>
-            <div class="rectangle-4"></div>
-            <div class="rectangle-5"></div>
-          </div>
-        </div>
-        <div class="overlap-wrapper">
-            <img class="permis-de-conduire" src="../../../images/plus.svg" onclick="document.getElementById('fileInputDriverLicense').click();" alt="Upload Icon" />        
-            <input type="file" id="fileInputDriverLicense" style="display:none;" onchange="handleDriverLicenseUpload(event)"/>
-        </div>
-        
-        <div class="overlap-wrapper">
-            <div class="div-wrapper" onclick="document.getElementById('fileInputDriverLicense').click();">
-                <p class="p">Ajouter votre permis de conduire</p>
-            </div>
-            <input type="file" id="fileInputDriverLicense" style="display:none;" onchange="handleDriverLicenseUpload(event)"/>
-        </div>
-      </div>
-    </div>
-  </body>
-</html>
-<script>
-    function handleDriverLicenseUpload(event) {
-        var files = event.target.files;
-        if (files.length === 0) {
-            alert('No file selected!');
+<?php
+
+require_once '../../BDD_login.php';  // Connexion à la base de données
+
+$path = '../../../Stockage/Permis/';
+
+$file_err ="";
+
+session_start();
+$email = $_SESSION["email"];
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    echo $email;
+    if (isset($_FILES['screenshot']) && $_FILES['screenshot']['error'] === 0) {
+        // Testons, si le fichier est trop volumineux
+        if ($_FILES['screenshot']['size'] > 1000000) {
+            $file_err = "L'envoi n'a pas pu être effectué, erreur ou image trop volumineuse";
             return;
         }
-        var file = files[0];
-        if (file.type.match('image.*')) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                // Assuming there's an element to display the image
-                var displayArea = document.querySelector('.permis-de-conduire');
-                displayArea.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
+
+        // Testons, si l'extension n'est pas autorisée
+        $fileInfo = pathinfo($_FILES['screenshot']['name']);
+        $extension = $fileInfo['extension'];
+        $allowedExtensions = ['jpg', 'jpeg', 'gif', 'png'];
+        if (!in_array($extension, $allowedExtensions)) {
+            $file_err = "L'envoi n'a pas pu être effectué, l'extension {$extension} n'est pas autorisée";
+            return;
+        }
+        // Testons, si le dossier uploads est manquant
+        if (!is_dir($path)) {
+            $file_err = "L'envoi n'a pas pu être effectué, le dossier uploads est manquant";
+            return;
+        }
+        // On peut valider le fichier et le stocker définitivement
+        move_uploaded_file($_FILES['screenshot']['tmp_name'], $path . basename($_FILES['screenshot']['name']));
+
+        $file_name = $_FILES['screenshot']['name'];
+
+        $stmt = $pdo->prepare("UPDATE utilisateur SET photo_permis = :file_name WHERE email = :email");
+        $stmt->bindParam(':file_name', $file_name);
+        $stmt->bindParam(':email', $email);
+
+        if($stmt->execute()) {
+            header("location: ../../Connexion/Connexion.php");
+            exit;
         } else {
-            alert('Please select an image file.');
+            $file_err = "Une erreur est survenue lors de l'enregistrement de l'image.";
         }
     }
-    </script>
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="inscription3.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../../template.css?v=<?php echo time(); ?>">
+</head>
+<body>
+<div class="connexion">
+    <div>Ajoutez votre permis :</div>
+</div>
+<div class="top-bar">
+    <div class="logo-container">
+        <div class="logo-background">
+            <img src="../../../images/Logo_omnes.png" alt="Logo" />
+        </div>
+    </div>
+    <div class="menu-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+<div class="bottom-bar"></div>
+<img src="../../../images/Permis.jpg" alt="Placeholder image" class="placeholder-image"/>
+<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
+    <div class="button-container">
+        <label for="myFile" class="label-button">Choisir</label>
+        <input type="file" id="myFile" name="screenshot" accept="image/*">
+        <span class="invalid-feedback"><?php echo $file_err; ?></span>
+    </div>
+    <button type="submit" class="avatar">Upload</button>
+</form>
+</body>
+</html>

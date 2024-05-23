@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($stmt->execute()) {
                 session_start();
                 $_SESSION["email"] = $email;
-                header("Location: ../ins2/inscription2.php");
+                header("Location: ../ins2/inscription3.php");
                 exit;
             } else {
                 echo "Oops! Something went wrong. Please try again later.";

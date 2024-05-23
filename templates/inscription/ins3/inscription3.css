@@ -4,62 +4,157 @@
     flex-direction: row;
     justify-content: center;
     width: 100%;
-  }
-  
-  .page-inscription .div {
-    background-color: #eaeced;
-    width: 390px;
-    height: 844px;
-    position: relative;
-  }
-  
-  .page-inscription .overlap {
-    position: absolute;
+}
+
+.page-inscription .rectangle {
     width: 390px;
     height: 88px;
     top: 756px;
+    background-color: #1a0040;
+    position: absolute;
     left: 0;
-    background-color: #1a0040;
-  }
-  
-  .page-inscription .rectangle {
-    height: 88px;
-    background-color: #1a0040;
-  }
-  
-  .page-inscription .overlap-group {
+}
+
+.page-inscription .overlap {
+    position: absolute;
+    width: 25%;
+    height: 3em;
+    top: 27vh;
+    left: 50%;
+    transform: translate(-50%); /* Centre horizontalement et verticalement */
+    background-color: #d9d9d9;
+    border-radius: 20px;
+}
+
+.page-inscription .text-wrapper {
+    position: absolute;
+    width: 250px;
+    top: 7px;
+    left: 20px;
+    font-family: "Outfit-Bold", Helvetica;
+    font-weight: 700;
+    color: #00000066;
+    font-size: 19px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.overlap-group {
+    position: absolute;
+    width: 25%;
+    height: 3em;
+    top: 37vh;
+    left: 50%;
+    transform: translate(-50%); /* Centre horizontalement et verticalement */
+    background-color: #d9d9d9;
+    border-radius: 20px;
+}
+
+.page-inscription .text-wrapper-2 {
+    position: absolute;
+    width: 250px;
+    top: 7px;
+    left: 26px;
+    font-family: "Outfit-Bold", Helvetica;
+    font-weight: 700;
+    color: #00000066;
+    font-size: 19px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.page-inscription .div-wrapper {
+    position: absolute;
+    width: 25%;
+    height: 3em;
+    top: 47vh;
+    left: 50%;
+    transform: translate(-50%); /* Centre horizontalement et verticalement */
+    background-color: #d9d9d9;
+    border-radius: 20px;
+}
+
+.page-inscription .text-wrapper-3 {
+    position: absolute;
+    width: 200px;
+    top: 7px;
+    left: 46px;
+    font-family: "Outfit-Bold", Helvetica;
+    font-weight: 700;
+    color: #00000066;
+    font-size: 19px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.page-inscription .overlap-2 {
+    position: absolute;
+    width: 25%;
+    height: 3em;
+    top: 56vh;
+    left: 50%;
+    transform: translate(-50%); /* Centre horizontalement et verticalement */
+    background-color: #d9d9d9;
+    border-radius: 20px;
+}
+
+.page-inscription .text-wrapper-4 {
+    position: absolute;
+    width: 201px;
+    top: 7px;
+    left: 15px;
+    font-family: "Outfit-Bold", Helvetica;
+    font-weight: 700;
+    color: #00000066;
+    font-size: 19px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.page-inscription .overlap-3 {
+    position: absolute;
+    width: 25%;
+    height: 3em;
+    top: 66vh;
+    left: 50%;
+    background-size: 100% 100%;
+    transform: translate(-50%); /* Centre horizontalement et verticalement */
+    background-color: #d9d9d9;
+    border-radius: 20px;
+}
+
+.page-inscription .se-connecter {
     position: absolute;
     width: 149px;
     height: 52px;
-    top: 570px;
-    left: 120px;
-  }
-  
-  .page-inscription .se-connecter {
-    position: absolute;
-    width: 149px;
-    height: 52px;
-    top: 0;
-    left: 0;
-  }
-  
-  .page-inscription .overlap-group-2 {
+    top: 77vh;
+    left: 50%;
+    transform: translate(-50%); /* Centre horizontalement et verticalement */
+}
+
+.page-inscription .overlap-group-2 {
     position: relative;
     width: 147px;
     height: 52px;
-  }
-  
-  .page-inscription .rectangle-2 {
-    position: absolute;
+    border: #00000066;
+}
+
+.page-inscription .rectangle-2 {
     width: 145px;
     height: 51px;
     top: 0;
-    left: 0;
     background-color: #9190dc;
     border-radius: 42px;
-  }
-  
-  .page-inscription .text-wrapper {
+    position: absolute;
+    left: 0;
+    outline: none;
+}
+
+.page-inscription .text-wrapper-5 {
     position: absolute;
     width: 145px;
     top: 11px;
@@ -71,18 +166,18 @@
     text-align: center;
     letter-spacing: 0;
     line-height: normal;
-  }
-  
-  .page-inscription .overlap-2 {
+}
+
+.page-inscription .overlap-4 {
     position: absolute;
     width: 390px;
     height: 88px;
     top: 0;
     left: 0;
     background-color: #1a0040;
-  }
-  
-  .page-inscription .logo {
+}
+
+.page-inscription .logo {
     position: absolute;
     width: 109px;
     height: 41px;
@@ -90,89 +185,175 @@
     left: 141px;
     background-color: #ffffff;
     border-radius: 76px;
-  }
-  
-  .page-inscription .logo-omnes-education {
+}
+
+.page-inscription .logo-omnes-education {
     position: absolute;
     width: 89px;
     height: 23px;
     top: 10px;
     left: 10px;
     object-fit: cover;
-  }
-  
-  .page-inscription .navbtn {
+}
+
+.page-inscription .navbtn {
     position: absolute;
     width: 43px;
     height: 27px;
     top: 32px;
     left: 315px;
-  }
-  
-  .page-inscription .rectangle-3 {
-    position: absolute;
+}
+
+.page-inscription .rectangle-3 {
     width: 43px;
     height: 7px;
     top: 0;
-    left: 0;
     background-color: #ffffff;
     border-radius: 21px;
-  }
-  .page-inscription .rectangle-4 {
     position: absolute;
+    left: 0;
+}
+
+.page-inscription .rectangle-4 {
     width: 43px;
     height: 7px;
     top: 10px;
-    left: 0;
     background-color: #ffffff;
     border-radius: 21px;
-  }
-  
-  .page-inscription .rectangle-5 {
     position: absolute;
+    left: 0;
+}
+
+.page-inscription .rectangle-5 {
     width: 43px;
     height: 7px;
     top: 20px;
-    left: 0;
     background-color: #ffffff;
     border-radius: 21px;
-  }
-  
-  .page-inscription .permis-de-conduire {
     position: absolute;
-    width: 304px;
-    height: 211px;
-    top: -250px;
-    left: 10px;
-  }
-  
-  .page-inscription .overlap-wrapper {
-    position: absolute;
-    width: 329px;
-    height: 51px;
-    top: 453px;
-    left: 31px;
-  }
-  
-  .page-inscription .div-wrapper {
-    position: relative;
-    width: 327px;
-    height: 51px;
-    background-color: #1a0040;
-    border-radius: 8px;
-  }
-  
-  .page-inscription .p {
-    position: absolute;
-    width: 327px;
-    top: 11px;
     left: 0;
+}
+
+
+.text-input {
+    width: 100%; /* Take up all available space in the container */
+    height: 100%; /* Full height to match the container */
+    border: none; /* Remove default border */
+    background-color: transparent; /* Transparent background */
+    border-radius: 20px; /* Rounded corners like the container */
+    padding: 0 20px; /* Padding on left and right */
     font-family: "Outfit-Bold", Helvetica;
-    font-weight: 700;
-    color: #ffffff;
-    font-size: 19px;
+    font-size: 1vw; /* Matching font size */
+    color: #000; /* Text color */
+}
+
+.page-inscription .text-input:focus {
+    outline: none;
+}
+
+.div{
+    height: 100%;
+    width: 100%;
+}
+
+.connexion {
+    top: 22vh;
+}
+
+.placeholder-image {
+    max-width: 18%;
+    height: auto;
+    left: 50%;
+    border-radius: 50%;
+    top: 30vh; /* Centre verticalement */
+    transform: translate(-50%); /* Centre horizontalement et verticalement */
+}
+
+.se-connecter {
+    position: absolute;
+    width: 149px;
+    height: 52px;
+    top: 70vh;
+    left: 50%;
+    transform: translate(-50%); /* Centre horizontalement et verticalement */
+}
+
+.overlap-group-2 {
+    position: relative;
+    width: 147px;
+    height: 52px;
+    border: #00000066;
+}
+
+.button{
+    display: inline-block;
+    width: 250px; /* Largeur fixe pour chaque bouton */
+    height: 70px; /* Hauteur fixe pour chaque bouton */
+    background: #9190DC;
+    border-radius: 42px;
     text-align: center;
-    letter-spacing: 0;
-    line-height: normal;
-  }
-  
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 70px; /* Alignement vertical du texte à l'intérieur du bouton */
+    cursor: pointer; /* Change le curseur en main quand survolé */
+    text-decoration: none;
+}
+
+.button-container {
+    display: flex; /* Utilise flexbox pour aligner les éléments fils */
+    justify-content: center; /* Répartit l'espace également entre les éléments */
+    align-items: center; /* Centre les éléments verticalement */
+    width: 100%; /* Définissez la largeur pour contenir les deux boutons */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centre l'image parfaitement dans le logo-background */
+    top: 77vh; /* Ajustez cette valeur en fonction de la position souhaitée dans le conteneur principal */
+    align-content: center;
+    position: absolute; /* Pour positionner en fonction de l'écran */
+}
+
+input[type="file"] {
+    display: none; /* Cache le vrai input file */
+}
+
+.label-button {
+    display: inline-block;
+    width: 250px; /* Largeur fixe pour chaque bouton */
+    height: 70px; /* Hauteur fixe pour chaque bouton */
+    background: #9190DC;
+    border-radius: 42px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 70px; /* Alignement vertical du texte à l'intérieur du bouton */
+    cursor: pointer; /* Change le curseur en main quand survolé */
+    text-decoration: none;
+}
+
+.submit{
+    display: inline-block;
+    width: 250px; /* Largeur fixe pour chaque bouton */
+    height: 70px; /* Hauteur fixe pour chaque bouton */
+    background: #9190DC;
+    border-radius: 42px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 70px; /* Alignement vertical du texte à l'intérieur du bouton */
+    cursor: pointer; /* Change le curseur en main quand survolé */
+    text-decoration: none;
+}
+
+.avatar{
+    width: 100%; /* Take up all available space in the container */
+    height: 100%; /* Full height to match the container */
+    border: none; /* Remove default border */
+    background-color: transparent; /* Transparent background */
+    border-radius: 20px; /* Rounded corners like the container */
+    padding: 0 0px; /* Padding on left and right */
+    font-family: "Outfit-Bold", Helvetica;
+    font-size: 1vw; /* Matching font size */
+    color: #000; /* Text color */
+}
