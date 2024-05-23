@@ -157,7 +157,7 @@ body {
     border-radius: 20px; /* Rounded corners like the container */
     padding: 0 20px; /* Padding on left and right */
     font-family: "Outfit-Bold", Helvetica;
-    font-size: 19px; /* Matching font size */
+    font-size: 1vw; /* Matching font size */
     color: #000; /* Text color */
 }
 

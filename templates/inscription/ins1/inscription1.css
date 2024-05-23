@@ -118,9 +118,9 @@ body {
 
 .page-inscription .overlap {
     position: absolute;
-    width: 282px;
-    height: 39px;
-    top: 186px;
+    width: 25%;
+    height: 3em;
+    top: 27vh;
     left: 50%;
     transform: translate(-50%); /* Centre horizontalement et verticalement */
     background-color: #d9d9d9;
@@ -141,11 +141,11 @@ body {
     line-height: normal;
 }
 
-.page-inscription .overlap-group {
+.overlap-group {
     position: absolute;
-    width: 282px;
-    height: 39px;
-    top: 486px;
+    width: 25%;
+    height: 3em;
+    top: 37vh;
     left: 50%;
     transform: translate(-50%); /* Centre horizontalement et verticalement */
     background-color: #d9d9d9;
@@ -168,11 +168,13 @@ body {
 
 .page-inscription .div-wrapper {
     position: absolute;
-    width: 226px;
-    height: 39px;
-    top: 261px;
-    background-image: url(./img/rectangle-9.svg);
-    background-size: 100% 100%;
+    width: 25%;
+    height: 3em;
+    top: 47vh;
+    left: 50%;
+    transform: translate(-50%); /* Centre horizontalement et verticalement */
+    background-color: #d9d9d9;
+    border-radius: 20px;
 }
 
 .page-inscription .text-wrapper-3 {
@@ -191,9 +193,9 @@ body {
 
 .page-inscription .overlap-2 {
     position: absolute;
-    width: 226px;
-    height: 39px;
-    top: 336px;
+    width: 25%;
+    height: 3em;
+    top: 56vh;
     left: 50%;
     transform: translate(-50%); /* Centre horizontalement et verticalement */
     background-color: #d9d9d9;
@@ -216,12 +218,14 @@ body {
 
 .page-inscription .overlap-3 {
     position: absolute;
-    width: 282px;
-    height: 39px;
-    top: 411px;
-    left: 52px;
-    background-image: url(./img/rectangle-26.svg);
+    width: 25%;
+    height: 3em;
+    top: 66vh;
+    left: 50%;
     background-size: 100% 100%;
+    transform: translate(-50%); /* Centre horizontalement et verticalement */
+    background-color: #d9d9d9;
+    border-radius: 20px;
 }
 
 .page-inscription .se-connecter {
@@ -331,27 +335,6 @@ body {
     left: 0;
 }
 
-.page-inscription .div-wrapper {
-    position: absolute;
-    width: 282px;
-    height: 39px;
-    top: 261px;
-    left: 50%;
-    transform: translate(-50%); /* Centre horizontalement et verticalement */
-    background-color: #d9d9d9;
-    border-radius: 20px;
-}
-
-.page-inscription .overlap-3 {
-    position: absolute;
-    width: 282px;
-    height: 39px;
-    top: 411px;
-    left: 50%;
-    transform: translate(-50%); /* Centre horizontalement et verticalement */
-    background-color: #d9d9d9;
-    border-radius: 20px;
-}
 
 .text-input {
     width: 100%; /* Take up all available space in the container */
@@ -361,20 +344,7 @@ body {
     border-radius: 20px; /* Rounded corners like the container */
     padding: 0 20px; /* Padding on left and right */
     font-family: "Outfit-Bold", Helvetica;
-    font-size: 19px; /* Matching font size */
-    color: #000; /* Text color */
-}
-
-
-.page-inscription .text-input {
-    width: 100%; /* Take up all available space in the container */
-    height: 100%; /* Full height to match the container */
-    border: none; /* Remove default border */
-    background-color: transparent; /* Transparent background */
-    border-radius: 20px; /* Rounded corners like the container */
-    padding: 0 20px; /* Padding on left and right */
-    font-family: "Outfit-Bold", Helvetica;
-    font-size: 19px; /* Matching font size */
+    font-size: 1vw; /* Matching font size */
     color: #000; /* Text color */
 }
 
@@ -383,8 +353,8 @@ body {
 }
 
 .div{
-    left: 50%;
-    transform: translate(-50%); /* Centre horizontalement et verticalement */
+    height: 100%;
+    width: 100%;
 }
 
 .connexion {

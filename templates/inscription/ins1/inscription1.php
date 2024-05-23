@@ -3,6 +3,8 @@ require_once '../../BDD_login.php';  // Connexion à la base de données
 
 $nom = $prenom = $email = $num_tel = $password = "";
 $nom_err = $password_err = $prenom_err = $email_err = $num_tel_err = "";
+$created_at = date('Y-m-d H:i:s');
+$updated_at = date('Y-m-d H:i:s');
 
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -81,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($nom_err) && empty($prenom_err) && empty($email_err) && empty($num_tel_err) && empty($password_err)) {
 
         // Prepare an insert statement
-        $sql = "INSERT INTO utilisateur (nom, prenom, email, num_tel, pwd) VALUES (:nom, :prenom, :email, :num_tel, :password)";
+        $sql = "INSERT INTO utilisateur (nom, prenom, email, num_tel, pwd, created_at, updated_at) VALUES (:nom, :prenom, :email, :num_tel, :password, :created_at, :updated_at)";
 
         if ($stmt = $pdo->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
@@ -90,6 +92,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
             $stmt->bindParam(":num_tel", $param_num_tel, PDO::PARAM_STR);
             $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
+            $stmt->bindParam(":created_at", $param_created_at, PDO::PARAM_STR);
+            $stmt->bindParam(":updated_at", $param_updated_at, PDO::PARAM_STR);
 
             // Set parameters
             $param_nom = $nom;
@@ -97,11 +101,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_email = $email;
             $param_num_tel = $num_tel;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+            $param_created_at = $created_at;
+            $param_updated_at = $updated_at;
 
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {
                 // Redirect to login page
-                header("location: login.php");
+                header("location: ../ins2/inscription2.php");
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -120,7 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="inscription1.css" />
+    <link rel="stylesheet" href="inscription1.css?v=<?php echo time(); ?>">
 </head>
 <body>
 <div class="connexion">
