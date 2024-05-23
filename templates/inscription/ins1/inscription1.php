@@ -127,6 +127,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="inscription1.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../../template.css?v=<?php echo time(); ?>">
 </head>
 <body>
 <div class="connexion">
