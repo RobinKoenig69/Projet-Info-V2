@@ -35,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($email_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT user_ID, email, pwd FROM utilisateur WHERE email = :email";
+        $sql = "SELECT user_ID, email, pwd, user_type FROM utilisateur WHERE email = :email";
 
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
@@ -51,6 +51,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $id = $row["user_ID"];
                         $email = $row["email"];
                         $hashed_password = $row["pwd"];
+                        $user_type = $row["user_type"];
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, so start a new session
                             session_start();
@@ -60,6 +61,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                             $_SESSION["user_ID"] = $id;
                             $_SESSION["email"] = $email;
+                            $_SESSION["type"] = $user_type;
 
                             // Redirect user to welcome page
                             header("location: ../trajets/mesTrajets/mesTrajets.php");
@@ -91,7 +93,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>BlaBla Omnes</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="Connexion.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../template.css?v=<?php echo time(); ?>">
 </head>

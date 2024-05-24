@@ -1,325 +1,137 @@
-.iphone {
-    background-color: #eaeced;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
-  }
-  
-  .iphone .div {
-    background-color: #eaeced;
-    width: 390px;
-    height: 844px;
-    position: relative;
-  }
-  
-  .iphone .header {
-    position: absolute;
-    width: 390px;
-    height: 100px;
-    top: 0;
-    left: 0;
-    background-color: #1a0040;
-  }
-  
-  .iphone .logo {
-    position: relative;
-    width: 226px;
-    height: 41px;
-    top: 50px;
-    left: 141px;
-  }
-  
-  .iphone .overlap-group {
-    position: absolute;
-    width: 109px;
-    height: 41px;
-    top: 0;
-    left: 0;
-    background-color: #ffffff;
-    border-radius: 76px;
-  }
-  
-  .iphone .logo-omnes-education {
-    position: absolute;
-    width: 89px;
-    height: 23px;
-    top: 10px;
-    left: 10px;
-    object-fit: cover;
-  }
-  
-  .iphone .navbtn {
-    position: absolute;
-    width: 43px;
-    height: 27px;
-    top: 10px;
-    left: 183px;
-  }
-  
-  .iphone .rectangle {
-    position: absolute;
-    width: 43px;
-    height: 7px;
-    top: 0;
-    left: 0;
-    background-color: #ffffff;
-    border-radius: 21px;
-  }
-  
-  .iphone .rectangle-2 {
-    position: absolute;
-    width: 43px;
-    height: 7px;
-    top: 10px;
-    left: 0;
-    background-color: #ffffff;
-    border-radius: 21px;
-  }
-  
-  .iphone .rectangle-3 {
-    position: absolute;
-    width: 43px;
-    height: 7px;
-    top: 20px;
-    left: 0;
-    background-color: #ffffff;
-    border-radius: 21px;
-  }
-  
-  .iphone .ellipse {
-    position: absolute;
-    width: 110px;
-    height: 110px;
-    top: 130px;
-    left: 140px;
-    background-color: #ffffff;
-    border-radius: 55px;
-  }
-  
-  .iphone .overlap {
-    position: absolute;
-    width: 137px;
-    height: 33px;
-    top: 263px;
-    left: 127px;
-    background-color: #ffffff;
-    border-radius: 13px;
-  }
-  
-  .iphone .text-wrapper {
-    position: absolute;
-    width: 107px;
-    top: 5px;
-    left: 16px;
-    font-family: "Outfit-Bold", Helvetica;
-    font-weight: 700;
-    color: #000000;
-    font-size: 16px;
-    text-align: center;
-    letter-spacing: 0;
-    line-height: normal;
-  }
-  
-  .iphone .div-wrapper {
-    position: absolute;
-    width: 137px;
-    height: 33px;
-    top: 319px;
-    left: 127px;
-    background-color: #ffffff;
-    border-radius: 13px;
-  }
-  
-  .iphone .overlap-2 {
-    position: absolute;
-    width: 245px;
-    height: 33px;
-    top: 375px;
-    left: 72px;
-    background-color: #ffffff;
-    border-radius: 13px;
-  }
-  
-  .iphone .text-wrapper-2 {
-    position: absolute;
-    width: 107px;
-    top: 6px;
-    left: 68px;
-    font-family: "Outfit-Bold", Helvetica;
-    font-weight: 700;
-    color: #000000;
-    font-size: 16px;
-    text-align: center;
-    letter-spacing: 0;
-    line-height: normal;
-  }
-  
-  .iphone .overlap-3 {
-    position: absolute;
-    width: 245px;
-    height: 33px;
-    top: 431px;
-    left: 72px;
-    background-color: #ffffff;
-    border-radius: 13px;
-  }
-  
-  .iphone .text-wrapper-3 {
-    position: absolute;
-    width: 107px;
-    top: 5px;
-    left: 68px;
-    font-family: "Outfit-Bold", Helvetica;
-    font-weight: 700;
-    color: #000000;
-    font-size: 16px;
-    text-align: center;
-    letter-spacing: 0;
-    line-height: normal;
-  }
-  
-  .iphone .overlap-4 {
-    position: absolute;
-    width: 303px;
-    height: 63px;
-    top: 478px;
-    left: 43px;
-    background-color: #ffffff;
-    border-radius: 13px;
-  }
-  
-  .iphone .text-wrapper-4 {
-    position: absolute;
-    width: 107px;
-    top: 19px;
-    left: 13px;
-    font-family: "Outfit-Bold", Helvetica;
-    font-weight: 700;
-    color: #000000;
-    font-size: 16px;
-    text-align: center;
-    letter-spacing: 0;
-    line-height: normal;
-  }
-  
-  .iphone .rectangle-4 {
-    position: absolute;
-    width: 72px;
-    height: 44px;
-    top: 11px;
-    left: 221px;
-    background-color: #d9d9d9;
-  }
-  
-  .iphone .overlap-5 {
-    position: absolute;
-    width: 203px;
-    height: 40px;
-    top: 711px;
-    left: 92px;
-    background-color: #1a0040;
-    border-radius: 18px;
-  }
-  
-  .iphone .p {
-    position: absolute;
-    width: 203px;
-    top: 9px;
-    left: 0;
-    font-family: "Outfit-Bold", Helvetica;
-    font-weight: 700;
-    color: #ffffff;
-    font-size: 16px;
-    text-align: center;
-    letter-spacing: 0;
-    line-height: normal;
-  }
-  
-  .iphone .overlap-6 {
-    position: absolute;
-    width: 109px;
-    height: 28px;
-    top: 781px;
-    left: 140px;
-    background-color: #8080d7;
-    border-radius: 8px;
-  }
-  
-  .iphone .text-wrapper-5 {
-    position: absolute;
-    width: 105px;
-    top: 3px;
-    left: 2px;
-    font-family: "Outfit-Bold", Helvetica;
-    font-weight: 700;
-    color: #ffffff;
-    font-size: 16px;
-    text-align: center;
-    letter-spacing: 0;
-    line-height: normal;
-    white-space: nowrap;
-  }
-  
-  .iphone .overlap-7 {
-    position: absolute;
-    width: 303px;
-    height: 112px;
-    top: 559px;
-    left: 45px;
-    background-color: #ffffff;
-    border-radius: 13px;
-  }
-  
-  .iphone .text-wrapper-6 {
-    position: absolute;
-    top: 35px;
-    left: 118px;
-    font-family: "Outfit-Bold", Helvetica;
-    font-weight: 700;
-    color: #000000;
-    font-size: 16px;
-    text-align: center;
-    letter-spacing: 0;
-    line-height: normal;
-  }
-  
-  .iphone .text-wrapper-7 {
-    position: absolute;
-    width: 62px;
-    top: 676px;
-    left: 159px;
-    font-family: "Outfit-Bold", Helvetica;
-    font-weight: 700;
-    color: #13bd2f;
-    font-size: 16px;
-    text-align: center;
-    letter-spacing: 0;
-    line-height: normal;
-    white-space: nowrap;
-  }
-  
-
-  .iphone .text-input {
-    width: 100%; /* Assure que l'input remplit le conteneur */
-    height: 33px; /* Hauteur standard */
-    font-family: "Outfit-Bold", Helvetica;
-    font-weight: 700;
-    color: #000000;
-    font-size: 16px;
-    background: transparent;
-    border: none;
-    outline: none;
-    text-align: center;
-    border-radius: 13px;
-    padding: 0 10px;
+.placeholder-image {
+  border-radius: 50%;
+  height: 12vw;
+  width: 12vw;
+  left: 10%;
+  top: 15vh;
 }
 
-.iphone .text-input::placeholder {
-    color: #aaa; /* Style pour le texte de l'placeholder */
+.placeholder-image2 {
+  position: absolute;
+  border-radius: 50%;
+  height: 12vw;
+  width: 12vw;
+  left: 10%;
+  top: 50vh;
 }
 
-.iphone .text-input:focus {
-    border: 1px solid #666; /* Ajoute une bordure lors du focus pour mettre en évidence le champ actif */
-    background-color: #fff; /* Change le fond pour indiquer l'activité */
+.connexion {
+  top: 25vh;
+}
+
+.overlap {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centre l'image parfaitement dans le logo-background */
+  background-color: #d9d9d9;
+  border-radius: 20px; /* Ajoute des coins arrondis de 20px */
+  width: 25%;
+  height: 3em;
+}
+
+.align{
+  top : 35vh;
+}
+
+.align2{
+  top : 45vh;
+}
+
+.align3{
+  top : 55vh;
+}
+
+.align4{
+  top : 65vh;
+}
+
+.align5{
+  top : 75vh;
+}
+
+.text-input {
+  width: 100%; /* Take up all available space in the container */
+  height: 100%; /* Full height to match the container */
+  border: none; /* Remove default border */
+  background-color: transparent; /* Transparent background */
+  border-radius: 20px; /* Rounded corners like the container */
+  padding: 0 20px; /* Padding on left and right */
+  font-family: "Outfit-Bold", Helvetica;
+  font-size: 1vw; /* Matching font size */
+  color: #000; /* Text color */
+}
+
+.info{
+  text-align: center;
+  padding-top: 1em;
+}
+
+.button{
+  width: 145px; /* Largeur fixe pour chaque bouton */
+  height: 51px; /* Hauteur fixe pour chaque bouton */
+  background: #9190DC;
+  border-radius: 42px;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 51px; /* Alignement vertical du texte à l'intérieur du bouton */
+  cursor: pointer; /* Change le curseur en main quand survolé */
+  text-decoration: none;
+}
+
+.button-container {
+  display: flex; /* Utilise flexbox pour aligner les éléments fils */
+  justify-content: space-evenly; /* Répartit l'espace également entre les éléments */
+  align-items: center; /* Centre les éléments verticalement */
+  width: 390px; /* Définissez la largeur pour contenir les deux boutons */
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centre l'image parfaitement dans le logo-background */
+  top: 77vh; /* Ajustez cette valeur en fonction de la position souhaitée dans le conteneur principal */
+  align-content: center;
+}
+
+.button-container2 {
+  position: absolute;
+  display: flex; /* Utilise flexbox pour aligner les éléments fils */
+  justify-content: space-evenly; /* Répartit l'espace également entre les éléments */
+  align-items: center; /* Centre les éléments verticalement */
+  width: 390px; /* Définissez la largeur pour contenir les deux boutons */
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centre l'image parfaitement dans le logo-background */
+  top: 84vh; /* Ajustez cette valeur en fonction de la position souhaitée dans le conteneur principal */
+  align-content: center;
+}
+
+.avatar{
+  width: 100%; /* Take up all available space in the container */
+  height: 100%; /* Full height to match the container */
+  border: none; /* Remove default border */
+  background-color: transparent; /* Transparent background */
+  border-radius: 20px; /* Rounded corners like the container */
+  padding: 0 0px; /* Padding on left and right */
+  font-family: "Outfit-Bold", Helvetica;
+  font-size: 1vw; /* Matching font size */
+  color: #000; /* Text color */
+  bottom: 1vh;
+}
+
+@media screen and (max-width: 700px) {
+  .connexion {
+    font-size: 40px;
+  }
+
+  .overlap{
+    width: 282px;
+    height: 39px;
+  }
+  .overlap-2{
+    width: 282px;
+    height: 39px;
+  }
+
+  .placeholder-image{
+    max-width: 25%;
+    height: auto;
+  }
 }
