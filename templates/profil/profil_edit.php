@@ -185,7 +185,6 @@ unset($pdo);
     <a href="../inscription/ins3/inscription3_profil.php" target="_blank">
         <img src="../../Stockage/Permis/<?php echo $Photo_Permis ?>" alt="Placeholder image" class="placeholder-image2"/>
     </a>
-    <div class="small-circle"></div>
     <div class="entry">
         <div class="connexion">
             <div>Profil :</div>
@@ -224,6 +223,11 @@ unset($pdo);
 
             <input type="submit" class="avatar" value="Valider"></input>
         </form>
+    </div>
+    <div class="logout-icon">
+        <a href="../accueil/main/pagePrincav.php">
+            <img  class="logout-icon" src="../../images/deconnexion.png" alt="Déconnexion" />
+        </a>
     </div>
 </div>
 </body>

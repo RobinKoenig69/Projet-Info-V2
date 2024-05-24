@@ -136,6 +136,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <div class="button-container">
                 <input type="submit" class="button" value="Se connecter">
+                <a href="../accueil/main/pagePrincav.php" class="button">Retour</a>
             </div>
         </form>
     </div>

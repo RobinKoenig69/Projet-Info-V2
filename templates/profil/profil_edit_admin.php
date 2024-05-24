@@ -173,7 +173,6 @@ unset($pdo);
     <div class="avatar"></div>
     <img src="../../Stockage/PP/<?php echo $photo_profil ?>" alt="Placeholder image" class="placeholder-image"/>
     <img src="../../Stockage/Permis/<?php echo $Photo_Permis ?>" alt="Placeholder image" class="placeholder-image2"/>
-    <div class="small-circle"></div>
     <div class="entry">
         <div class="connexion">
             <div>Profil :</div>

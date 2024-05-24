@@ -21,7 +21,7 @@
             </div>
         </div>
         <img src="../../../images/imagevoiture.png" alt="Placeholder image" class="placeholder-image"/>
-        <div class="small-circle"></div>
+
         <div class="bottom-bar"></div>
         <div class="avatar"></div>
 

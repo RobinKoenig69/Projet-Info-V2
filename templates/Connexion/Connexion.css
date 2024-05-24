@@ -44,30 +44,38 @@
     color: #000; /* Text color */
 }
 
-.button{
+.button {
     width: 145px; /* Largeur fixe pour chaque bouton */
     height: 51px; /* Hauteur fixe pour chaque bouton */
-    background: #9190DC;
-    border-radius: 42px;
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    font-weight: 700;
+    background: #9190DC; /* Couleur de fond */
+    border: none; /* Enlève toute bordure */
+    border-radius: 42px; /* Coins arrondis */
+    text-align: center; /* Texte centré */
+    color: white; /* Couleur du texte */
+    font-size: 20px; /* Taille de la police */
+    font-weight: 700; /* Poids de la police */
     line-height: 51px; /* Alignement vertical du texte à l'intérieur du bouton */
     cursor: pointer; /* Change le curseur en main quand survolé */
-    text-decoration: none;
+    text-decoration: none; /* Enlève toute décoration de texte */
 }
 
 .button-container {
     display: flex; /* Utilise flexbox pour aligner les éléments fils */
     justify-content: space-evenly; /* Répartit l'espace également entre les éléments */
     align-items: center; /* Centre les éléments verticalement */
-    width: 390px; /* Définissez la largeur pour contenir les deux boutons */
-    left: 50%;
-    transform: translate(-50%, -50%); /* Centre l'image parfaitement dans le logo-background */
-    top: 77vh; /* Ajustez cette valeur en fonction de la position souhaitée dans le conteneur principal */
-    align-content: center;
+    position: absolute; /* Positionnement absolu par rapport à son conteneur le plus proche */
+    left: 50%; /* Position horizontale au milieu */
+    top: 77vh; /* Position verticale */
+    transform: translateX(-50%); /* Décalage horizontal pour centrer parfaitement */
+    width: 390px; /* Largeur suffisante pour contenir les deux boutons */
 }
+
+.button:hover {
+    background: #9190DC; /* Gardez la couleur de fond inchangée */
+    color: white; /* Maintenez la couleur du texte */
+    text-decoration: none; /* Enlève toute décoration de texte */
+}
+
 
 
 @media screen and (max-width: 700px) {
