@@ -61,6 +61,7 @@ if (isset($email)){
 unset($pdo);
 ?>
 
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -104,7 +105,6 @@ unset($pdo);
 
     <img src="../../Stockage/PP/<?php echo $photo_profil ?>" alt="Placeholder image" class="placeholder-image"/>
     <img src="../../Stockage/Permis/<?php echo $Photo_Permis ?>" alt="Placeholder image" class="placeholder-image2"/>
-    <div class="small-circle"></div>
     <div class="entry">
         <div class="connexion">
             <div>Profil :</div>
@@ -129,6 +129,12 @@ unset($pdo);
         <div class="overlap align5">
             <div class="info">Status : <?php echo $user_type ?></div>
         </div>
+
+    </div>
+    <div class="logout-icon">
+        <a href="../accueil/main/pagePrincav.php">
+            <img  class="logout-icon" src="../../images/deconnexion.png" alt="Déconnexion" />
+        </a>
     </div>
 </div>
 </body>

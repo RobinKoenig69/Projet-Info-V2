@@ -1,18 +1,18 @@
 .placeholder-image {
   border-radius: 50%;
-  height: 12vw;
-  width: 12vw;
-  left: 10%;
-  top: 15vh;
+  height: 25vw;
+  width: 25vw;
+  left: 6%;
+  top: 25vh;
 }
 
 .placeholder-image2 {
   position: absolute;
   border-radius: 50%;
-  height: 12vw;
-  width: 12vw;
-  left: 10%;
-  top: 50vh;
+  height: 25vw;
+  width: 25vw;
+  left: 70%;
+  top: 25vh;
 }
 
 .connexion {
@@ -115,6 +115,25 @@
   color: #000; /* Text color */
   bottom: 1vh;
 }
+
+.logout-icon {
+  position: fixed;
+  top: 30px;
+  right: 10px;
+  z-index: 1000;
+}
+
+.logout-icon img {
+  width: 30px; /* Taille de l'icône */
+  height: auto; /* Garde le ratio de l'image */
+  transition: transform 0.3s ease; /* Effet doux pour l'animation */
+}
+
+.logout-icon a:hover img {
+  transform: scale(1.2); /* Agrandit l'icône au survol */
+  filter: brightness(0) invert(1); /* Inverse les couleurs pour un effet de changement de couleur */
+}
+
 
 @media screen and (max-width: 700px) {
   .connexion {
