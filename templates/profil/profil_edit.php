@@ -163,7 +163,20 @@ unset($pdo);
             <span></span>
         </div>
     </div>
-    <div class="bottom-bar"></div>
+    <div class="bottom-bar">
+        <a href="../inscription/ins3/inscription3_profil.php" target="_blank">
+            <img src="../../images/loupe.png"  alt="Placeholder image">
+        </a>
+        <a href="../inscription/ins3/inscription3_profil.php" target="_blank">
+            <img src="../../images/message.png"  alt="Placeholder image">
+        </a>
+        <a href="../inscription/ins3/inscription3_profil.php" target="_blank">
+            <img src="../../images/plus1.png"  alt="Placeholder image">
+        </a>
+        <a href="../inscription/ins3/inscription3_profil.php" target="_blank">
+            <img src="../../images/voiture.png"  alt="Placeholder image">
+        </a>
+    </div>
 
     <a href="../inscription/ins2/inscription2_profil.php" target="_blank">
         <img src="../../Stockage/PP/<?php echo $photo_profil ?>" alt="Placeholder image" class="placeholder-image"/>

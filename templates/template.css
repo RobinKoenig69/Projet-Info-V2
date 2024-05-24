@@ -82,6 +82,16 @@ body {
     position: fixed;
     bottom: 0;
     background: #1A0040;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.bottom-bar a {
+    color: white; /* Pour que les liens soient visibles */
+    text-decoration: none; /* Pour enlever le soulignement des liens */
+    padding: 0 10px; /* Ajustez cet espace selon votre préférence */
+    margin-top: 1.5%;
 }
 
 .avatar {
@@ -115,4 +125,10 @@ body {
     text-align: center;
     letter-spacing: 0;
     line-height: normal;
+}
+
+@media screen and (max-width: 700px) {
+    .placeholder-image2{
+        left: 75%;
+    }
 }
