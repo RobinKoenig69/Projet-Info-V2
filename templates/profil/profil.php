@@ -4,9 +4,6 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Initialize the session
-session_start();
-
 $email = $_SESSION['email'];
 $admin = "admin";
 
@@ -19,8 +16,6 @@ if ($_SESSION["type"] == $admin){
     $_SESSION['email'] = $email;
     header("Location: profil_edit_admin.php");
 }
-
-
 
 // Include config file
 require_once "../BDD_login.php";
@@ -66,7 +61,6 @@ if (isset($email)){
 unset($pdo);
 ?>
 
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -103,7 +97,11 @@ unset($pdo);
             <img src="../../images/voiture.png"  alt="Placeholder image">
         </a>
     </div>
-    <div class="avatar"></div>
+
+    <a href="profil_edit.php">
+        <input type="submit" class="avatar" value="Editer"></input>
+    </a>
+
     <img src="../../Stockage/PP/<?php echo $photo_profil ?>" alt="Placeholder image" class="placeholder-image"/>
     <img src="../../Stockage/Permis/<?php echo $Photo_Permis ?>" alt="Placeholder image" class="placeholder-image2"/>
     <div class="small-circle"></div>
@@ -131,7 +129,6 @@ unset($pdo);
         <div class="overlap align5">
             <div class="info">Status : <?php echo $user_type ?></div>
         </div>
-
     </div>
 </div>
 </body>

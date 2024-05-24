@@ -221,6 +221,7 @@ unset($pdo);
                        value="<?php echo $password; ?>" placeholder="PWD" required>
             </div>
 
+
             <input type="submit" class="avatar" value="Valider"></input>
         </form>
     </div>
