@@ -6,6 +6,8 @@ $email = $_SESSION['email'];
 $user_ID = $_SESSION['user_ID'];
 $reservation = $_SESSION['voyage_reserve'];
 
+$erreur="";
+
 $fumeur =$heure_depart = $heure_arrivee = $prix = $place = "";
 
 if (!isset($user_ID)){
@@ -63,8 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {
-                header("location: ../accueil/main/pagePrincav.php");
-                exit;
+
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -104,7 +105,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Close statement
             unset($stmt);
         }
-
     }
 }
 // Close connection
