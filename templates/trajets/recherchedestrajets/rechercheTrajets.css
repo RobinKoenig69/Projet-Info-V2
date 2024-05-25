@@ -1,3 +1,11 @@
+#map {
+  width: 50%;
+  height: 45vh;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centre l'image parfaitement dans le logo-background */
+  top: 50vh;
+}
+
 .placeholder-image {
   border-radius: 50%;
   height: 12vw;
@@ -131,7 +139,6 @@
   left: 50%;
   height: 20vh;
   transform: translate(-50%); /* Centre l'image parfaitement dans le logo-background */
-
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -143,7 +150,7 @@
   justify-content: space-between;
   padding: 10px;
   border-bottom: 1px solid #ccc;
-  top: 30vh;
+  top: 15vh;
   left: 50%;
   height: 20vh;
   transform: translate(-50%); /* Centre l'image parfaitement dans le logo-background */

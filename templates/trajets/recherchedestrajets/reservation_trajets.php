@@ -6,12 +6,16 @@ $email = $_SESSION['email'];
 $user_ID = $_SESSION['user_ID'];
 $reservation = $_SESSION['voyage_reserve'];
 
+$adresse_depart = $_SESSION["voyage_depart"];
+$adresse_arrivee = $_SESSION["voyage_arrivee"];
+
 $erreur="";
 
-$fumeur =$heure_depart = $heure_arrivee = $prix = $place = "";
+$fumeur = $heure_depart = $heure_arrivee = $prix = $place = "";
 
 if (!isset($user_ID)){
     header("Location: ../../accueil/main/pagePrincav.php");
+    exit;
 }
 
 require_once "../../BDD_login.php";
@@ -47,16 +51,14 @@ if (isset($reservation)) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $new_place = $place - 1;
 
-    $new_place = $place-1;
-
-    if ($new_place <0){
+    if ($new_place < 0){
         $erreur = "Plus de places disponibles";
     }
 
     if (empty($erreur)){
-
-        $sql = "UPDATE voyages SET place = :new_place WHERE voyage_ID =:reservation";
+        $sql = "UPDATE voyages SET place = :new_place WHERE voyage_ID = :reservation";
 
         if ($stmt = $pdo->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
@@ -65,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {
-
+                // Code to execute if the update is successful
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -118,6 +120,8 @@ unset($pdo);
     <title>BlaBla Omnes</title>
     <link rel="stylesheet" href="rechercheTrajets.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../../template.css?v=<?php echo time(); ?>">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZPX2ee3ukXiDkpm3ZSUTYzeuJn-ttahU&libraries=places"></script>
+    <script src="../../maps/mapsjs.js"></script>
 </head>
 <body>
 <div class="main-container">
@@ -148,9 +152,8 @@ unset($pdo);
         </a>
     </div>
 
-
     <div class="small-circle"></div>
-
+    <div id="map"></div>
 
     <div class="output2">
         <?php
@@ -167,12 +170,46 @@ unset($pdo);
     </div>
 
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-    <div class="se-connecter">
-        <button type="submit" class="overlap-group-2">
-            <div class="rectangle-2"></div>
-            <div class="text-wrapper-5">Réserver</div>
-        </button>
-    </div>
+        <div class="se-connecter">
+            <button type="submit" class="overlap-group-2">
+                <div class="rectangle-2"></div>
+                <div class="text-wrapper-5">Réserver</div>
+            </button>
+        </div>
     </form>
 </body>
 </html>
+
+<script>
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 48.8566, lng: 2.3522 },
+            zoom: 7
+        });
+
+        var directionsService = new google.maps.DirectionsService();
+        var directionsRenderer = new google.maps.DirectionsRenderer();
+        directionsRenderer.setMap(map);
+
+        calculateAndDisplayRoute(directionsService, directionsRenderer);
+    }
+
+    function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+        var start = <?php echo json_encode($adresse_depart); ?>;
+        var end = <?php echo json_encode($adresse_arrivee); ?>;
+
+        directionsService.route({
+            origin: start,
+            destination: end,
+            travelMode: 'DRIVING'
+        }, function (response, status) {
+            if (status === 'OK') {
+                directionsRenderer.setDirections(response);
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
+    }
+
+    window.onload = initMap;
+</script>

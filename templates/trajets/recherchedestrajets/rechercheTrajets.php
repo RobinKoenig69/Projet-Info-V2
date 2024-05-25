@@ -54,6 +54,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $adresse_arrivee = $_POST["adresse_arrivee"];
     }
 
+    $_SESSION['voyage_depart'] = $adresse_depart;
+    $_SESSION['voyage_arrivee'] = $adresse_arrivee;
+
     $sql = "SELECT Campus_ID FROM campus WHERE adresse = :adresse_depart";
 
     if ($stmt = $pdo->prepare($sql)) {
