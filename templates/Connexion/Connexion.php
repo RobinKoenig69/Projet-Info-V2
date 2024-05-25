@@ -15,6 +15,9 @@ require_once "../BDD_login.php";
 $email = $password = "";
 $email_err = $password_err = $login_err = "";
 
+
+//echo "<h1>TG + ratio</h1>";
+
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 

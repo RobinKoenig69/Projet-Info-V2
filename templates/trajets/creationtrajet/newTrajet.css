@@ -1,3 +1,22 @@
+.entry{
+  flex-direction: column;
+
+  width: 100%;
+
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centre l'image parfaitement dans le logo-background */
+
+  top: 50vh;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.bottom-bar{
+
+}
+
 .placeholder-image {
   border-radius: 50%;
   height: 12vw;
@@ -20,7 +39,7 @@
 }
 
 .overlap {
-  position: absolute;
+  position: relative;
   left: 50%;
   transform: translate(-50%, -50%); /* Centre l'image parfaitement dans le logo-background */
   background-color: #d9d9d9;
@@ -30,27 +49,31 @@
 }
 
 .align{
-  top : 30vh;
+  top : 10vh;
 }
 
 .align2{
-  top : 40vh;
+  top : 20vh;
 }
 
 .align3{
-  top : 50vh;
+  top : 30vh;
 }
 
 .align4{
-  top : 60vh;
+  top : 40vh;
 }
 
 .align5{
-  top : 70vh;
+  top : 50vh;
 }
 
 .align6{
-  top : 80vh;
+  top : 60vh;
+}
+
+.align7{
+  top : 70vh;
 }
 
 .text-input {

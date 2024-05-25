@@ -2,8 +2,8 @@
 // Initialize the session
 session_start();
 
-$adresse_depart = $adresse_arrivee = $prix = $place = $heure_depart = $heure_arrivee = "";
-$adresse_depart_err = $adresse_arrivee_err = $prix_err = $place_err = $heure_depart_err = $heure_arrivee_err = "";
+$adresse_depart = $adresse_arrivee = $prix = $place = $fumeur = $heure_depart = $heure_arrivee = "";
+$adresse_depart_err = $adresse_arrivee_err = $prix_err = $fumeur_err = $place_err = $heure_depart_err = $heure_arrivee_err = "";
 
 $email = $_SESSION['email'];
 $user_ID = $_SESSION['user_ID'];
@@ -50,6 +50,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $place_err = "Seats can only contain numbers.";
     } else {
         $place = $_POST["place"];
+    }
+
+    if (empty(trim($_POST["fumeur"]))) {
+        $fumeur_err = "Please indicate smoking conditions.";
+    } elseif (!preg_match('/^[a-zA-z]+$/', trim($_POST["fumeur"]))) {
+        $fumeur_err = "Smoking can only contain letters.";
+    } else {
+        $fumeur = $_POST["fumeur"];
     }
 
     // Prepare a select statement
@@ -107,10 +115,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $heure_arrivee = $_POST["heure_arrivee"];
     }
 
-    if (empty($heure_depart_err) && empty($adresse_depart_err) && empty($adresse_arrivee_err) && empty($place_err) && empty($prix_err) && empty($heure_arrivee_err)) {
+    if (empty($heure_depart_err) && empty($adresse_depart_err) && empty($adresse_arrivee_err) && empty($place_err) && empty($prix_err) && empty($heure_arrivee_err) && empty($fumeur_err)) {
 
         // Prepare an insert statement
-        $sql = "INSERT INTO voyages (heure_depart, heure_arrivee, prix, place, user_ID, Campus_ID_Depart, Campus_ID) VALUES (:heure_depart, :heure_arrivee, :prix, :place, :user_ID, :Campus_ID_Depart, :Campus_ID_Arrivee)";
+        $sql = "INSERT INTO voyages (heure_depart, heure_arrivee, prix, place, user_ID, Campus_ID_Depart, Campus_ID,fumeur) VALUES (:heure_depart, :heure_arrivee, :prix, :place, :user_ID, :Campus_ID_Depart, :Campus_ID_Arrivee, :fumeur)";
 
         if ($stmt = $pdo->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
@@ -121,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bindParam(":user_ID", $param_user_ID);
             $stmt->bindParam(":Campus_ID_Depart", $param_Campus_ID_Depart);
             $stmt->bindParam(":Campus_ID_Arrivee", $param_Campus_ID_Arrivee);
-
+            $stmt->bindParam(":fumeur", $param_fumeur);
 
             $param_prix = $prix;
             $param_place = $place;
@@ -130,6 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_heure_arrivee = $heure_arrivee;
             $param_heure_depart = $heure_depart;
             $param_user_ID = $user_ID;
+            $param_fumeur = $fumeur;
 
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {
@@ -143,7 +152,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             unset($stmt);
         }
 
-        $siege_reserve = 0;
+        $siege_reserve = 1;
         $updated_at = date('Y-m-d H:i:s');
         $statut = "reserve";
 
@@ -221,12 +230,13 @@ unset($pdo);
 
 
     <div class="small-circle"></div>
-    <div class="entry">
+    <div >
         <div class="connexion">
             <div>Créez votre Trajet :</div>
         </div>
 
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <div class="entry">
             <div class="overlap align">
                 <input autocomplete="off" name="adresse_depart" type="text"
                        class="text-input <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>"
@@ -263,8 +273,16 @@ unset($pdo);
                        value="<?php echo $place; ?>" placeholder="Nombre de places" required>
             </div>
 
+            <div class="overlap align7">
+                <input name="fumeur" type="text"
+                       class="text-input <?php echo (!empty($fumeur_err)) ? 'is-invalid' : ''; ?>"
+                       value="<?php echo $fumeur; ?>" placeholder="Fumeur ?" required>
+            </div>
+
+        </div>
             <input type="submit" class="avatar" value="Valider"></input>
         </form>
+
     </div>
 </div>
 </body>
