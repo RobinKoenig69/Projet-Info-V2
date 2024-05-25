@@ -207,6 +207,11 @@ unset($pdo);
             </div>
         </form>
     </div>
+    <div class="logout-icon">
+        <a href="../Connexion/logout.php">
+            <img  class="logout-icon" src="../../images/deconnexion.png" alt="Déconnexion" />
+        </a>
+    </div>
 </div>
 </body>
 </html>

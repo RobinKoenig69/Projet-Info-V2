@@ -9,7 +9,7 @@ $email = $_SESSION['email'];
 $user_ID = $_SESSION['user_ID'];
 
 if (empty($email)) {
-    header("location: ../accueil/main/pagePrincav.php");
+    header("location: ../../accueil/main/pagePrincav.php");
     exit;
 }
 
@@ -320,6 +320,11 @@ unset($pdo);
             <input type="submit" class="avatar" value="Valider"></input>
         </form>
 
+    </div>
+    <div class="logout-icon">
+        <a href="../../Connexion/logout.php">
+            <img  class="logout-icon" src="../../../images/deconnexion.png" alt="Déconnexion" />
+        </a>
     </div>
 </div>
 </body>

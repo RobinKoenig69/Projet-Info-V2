@@ -33,6 +33,11 @@
             <a class="button-outline" href="../../inscription/ins1/inscription1.php">S’inscrire</a>
         </div>
     </div>
+    <div class="logout-icon">
+        <a href="../../Connexion/logout.php">
+            <img  class="logout-icon" src="../../../images/deconnexion.png" alt="Déconnexion" />
+        </a>
     </div>
+
 </body>
 </html>

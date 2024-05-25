@@ -4,7 +4,23 @@ require_once "../BDD_login.php";
 
 $error = "";
 
+session_start();
 
+$email = $_SESSION['email'];
+$user_ID = $_SESSION['user_ID'];
+
+$user_type ="";
+$admin = "admin";
+
+if(isset($_SESSION["type"])){
+    $user_type = $_SESSION["type"];
+}
+
+
+if (empty($email) || $user_type !== $admin) {
+    header("location: ../accueil/main/pagePrincav.php");
+    exit;
+}
 
 // Function to add a campus
 function addCampus($adresse, $nom)
@@ -54,19 +70,22 @@ function checkcampus($id)
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (checkcampus($_POST['Campus_ID'])) {
-        $error = "<p>Impossible de supprimer ce campus car il est utilisé dans un voyage.</p>";
-    } else {
-        $error = "<p>Impossible de supprimer ce campus car il est utilisé dans un voyage.</p>";
+    if (isset($_POST['campus_id'])){
+        if (checkcampus($_POST['campus_id'])) {
+            $error = "Impossible de supprimer ce campus car il est utilisé dans un voyage.";
+        } else {
+            $error = "Impossible de supprimer ce campus car il est utilisé dans un voyage.";
+        }
     }
+
     if (empty($error)) {
         if (isset($_POST['add'])) {
             $adresse = $_POST['adresse'];
             $nom = $_POST['nom'];
             if (addCampus($adresse, $nom)) {
-                echo "<p>Campus added successfully!</p>";
+                $error = "Campus added successfully!";
             } else {
-                $error = "<p>Error adding campus.</p>";
+                $error = "Error adding campus.";
             }
         } elseif (isset($_POST['update'])) {
             // Updating a campus
@@ -74,17 +93,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $adresse = $_POST['adresse'];
             $nom = $_POST['nom'];
             if (updateCampus($id, $adresse, $nom)) {
-                echo "<p>Campus updated successfully!</p>";
+                $error = "Campus updated successfully!";
             } else {
-                $error = "<p>Error updating campus.</p>";
+                $error = "Error updating campus.";
             }
         } elseif (isset($_POST['delete'])) {
             // Deleting a campus
             $id = $_POST['campus_id'];
             if (deleteCampus($id)) {
-                echo "<p>Campus deleted successfully!</p>";
+                $error = "Campus deleted successfully!";
             } else {
-                $error = "<p>Error deleting campus.</p>";
+                $error = "Error deleting campus.";
             }
         }
     }
@@ -95,10 +114,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Function to fetch all users
 function fetchUsers() {
     global $pdo;
-    $sql = "SELECT user_ID, nom, prenom, email, num_tel FROM utilisateur";
+    $sql = "SELECT user_ID, nom, prenom, email, num_tel, COALESCE(NULLIF(Photo_Permis, ''), 'Permis.jpg') AS Photo_Permis, COALESCE(NULLIF(photo_profil, ''), 'Default.png') AS photo_profil FROM utilisateur";
     $stmt = $pdo->query($sql);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
 
 // Function to fetch all voyages
 function fetchVoyages() {
@@ -142,15 +162,18 @@ function fetchDrivers() {
     $stmt = $pdo->query($sql);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-function validateDriverLicense($userId, $isValid) {
+function validateDriverLicense($userId, $isValid){
     global $pdo;
-    $sql = "UPDATE utilisateur SET Validated = :isValid WHERE user_ID = :userId AND user_type = 'conducteur'";
+
+    $sql = "UPDATE utilisateur SET Validated = :isValid WHERE user_ID = :userId";
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':isValid', $isValid, PDO::PARAM_INT);
-    $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+    $stmt->bindValue(':isValid', $isValid);
+    $stmt->bindValue(':userId', $userId);
     $stmt->execute();
+
     return $stmt->rowCount();
 }
+
 // Example usage
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['updateUser'])) {
@@ -160,9 +183,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST['email'];
         $num_tel = $_POST['num_tel'];
         if(updateUser($userId, $nom, $prenom, $email, $num_tel)) {
-            echo "<p>User updated successfully!</p>";
+            $error = "User updated successfully!";
         } else {
-            echo "<p>Error updating user.</p>";
+            $error = "Error updating user.";
         }
     } elseif (isset($_POST['updateVoyage'])) {
         $voyageId = $_POST['voyage_id'];
@@ -170,21 +193,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $heure_arrivee = $_POST['heure_arrivee'];
         $prix = $_POST['prix'];
         if(updateVoyage($voyageId, $heure_depart, $heure_arrivee, $prix)) {
-            echo "<p>Voyage updated successfully!</p>";
+            $error = "Voyage updated successfully!";
         } else {
-            echo "<p>Error updating voyage.</p>";
+            $error = "Error updating voyage.";
         }
     }
-    elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['validateLicense'])) {
+    elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['validate_user'])) {
         $userId = $_POST['user_id'];
         if(validateDriverLicense($userId, 1)) {  // Set `Validated` to 1
-            echo "<p>Driver's license validated successfully!</p>";
+            $error = "Driver's license validated successfully!";
         } else {
-            echo "<p>Error validating driver's license.</p>";
+            $error = "Error validating driver's license.";
         }
     }
 }
-
 
 // Functions to modify and delete data (simplified version)
 function deleteUser($userId)
@@ -213,20 +235,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['deleteUser'])) {
         $userId = $_POST['user_id'];
         if (deleteUser($userId)) {
-            echo "<p>User deleted successfully!</p>";
+            $error = "User deleted successfully!";
         } else {
-            echo "<p>Error deleting user.</p>";
+            $error = "Error deleting user.</p>";
         }
     } elseif (isset($_POST['deleteVoyage'])) {
         $voyageId = $_POST['voyage_id'];
         if (deleteVoyage($voyageId)) {
-            echo "<p>Voyage deleted successfully!</p>";
+            $error = "Voyage deleted successfully!";
         } else {
-            echo "<p>Error deleting voyage.</p>";
+            $error = "Error deleting voyage";
         }
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -235,10 +256,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Admin Interface</title>
+    <link rel="stylesheet" href="../template.css?v=<?php echo time(); ?>">
+    <link   rel="stylesheet" href="admin.css?v=<?php echo time(); ?>">
 </head>
 
 <body>
     <h1>Admin Panel - Campus Management</h1>
+
+    <p class="error"><?php echo $error; ?></p>
+
     <form method="post">
         <h2>Add Campus</h2>
         Adresse: <input type="text" name="adresse" required><br>
@@ -259,26 +285,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         Campus ID: <input type="number" name="campus_id" required><br>
         <button type="submit" name="delete">Delete Campus</button>
     </form>
-    <p><?php echo $error; ?></p>
+
     <section>
         <h2>Users</h2>
         <?php
         $users = fetchUsers();
         foreach ($users as $user) {
-            echo "<div>{$user['nom']} {$user['prenom']} - {$user['email']} - {$user['num_tel']}
-                  <form method='post'>
-                      <input type='hidden' name='user_id' value='{$user['user_ID']}'>
-                      <input type='text' name='nom' value='{$user['nom']}'>
-                      <input type='text' name='prenom' value='{$user['prenom']}'>
-                      <input type='text' name='email' value='{$user['email']}'>
-                      <input type='text' name='num_tel' value='{$user['num_tel']}'>
-                      <button type='submit' name='updateUser'>Update User</button>
-                      <button type='submit' name='deleteUser'>Delete User</button>
-                  </form>
-                 </div>";
+            echo "<div>{$user['nom']} - {$user['prenom']} - {$user['email']} - {$user['num_tel']}
+              <br>
+              <br>
+              <img src='../../Stockage/Permis/{$user['Photo_Permis']}' alt='Placeholder image' class='placeholder-image'/>
+              <img src='../../Stockage/PP/{$user['photo_profil']}' alt='Placeholder image' class='placeholder-image'/>
+              <br>
+              <br>
+              <form method='post'>
+                  <input type='hidden' name='user_id' value='{$user['user_ID']}'>
+                  <input type='text' name='nom' value='{$user['nom']}'>
+                  <input type='text' name='prenom' value='{$user['prenom']}'>
+                  <input type='text' name='email' value='{$user['email']}'>
+                  <input type='text' name='num_tel' value='{$user['num_tel']}'>
+                  <button type='submit' name='updateUser'>Update User</button>
+                  <button type='submit' name='deleteUser'>Delete User</button>
+                  <button type='submit' name='validate_user'>Validate User</button>
+              </form>
+             </div>";
         }
         ?>
     </section>
+
 
     <section>
         <h2>Voyages</h2>
@@ -299,8 +333,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         ?>
     </section>
-</section>
+
+
+
+    <div class="logout-icon">
+        <a href="../Connexion/logout.php">
+            <img  class="logout-icon" src="../../images/deconnexion.png" alt="Déconnexion" />
+        </a>
+    </div>
 
 </body>
-
 </html>

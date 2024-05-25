@@ -1,0 +1,10 @@
+.error{
+    color: red;
+    font-weight: bold;
+}
+
+.placeholder-image{
+    position: relative;
+    height: 30vh;
+    width: 30vh;
+}

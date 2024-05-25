@@ -132,7 +132,7 @@ unset($pdo);
 
     </div>
     <div class="logout-icon">
-        <a href="../accueil/main/pagePrincav.php">
+        <a href="../Connexion/logout.php">
             <img  class="logout-icon" src="../../images/deconnexion.png" alt="Déconnexion" />
         </a>
     </div>

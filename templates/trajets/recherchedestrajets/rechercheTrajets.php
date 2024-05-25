@@ -20,7 +20,7 @@ $dates_depart[]="";
 $j=0;
 
 if (empty($email)) {
-    header("location: ../accueil/main/pagePrincav.php");
+    header("location: ../../accueil/main/pagePrincav.php");
     exit;
 }
 
@@ -219,6 +219,11 @@ unset($pdo);
         }
         echo isset($erreur) ? $erreur : '';
         ?>
+    </div>
+    <div class="logout-icon">
+        <a href="../../Connexion/logout.php">
+            <img  class="logout-icon" src="../../../images/deconnexion.png" alt="Déconnexion" />
+        </a>
     </div>
 
 </body>
