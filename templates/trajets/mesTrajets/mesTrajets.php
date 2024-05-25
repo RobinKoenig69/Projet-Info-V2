@@ -19,6 +19,7 @@ $Adresses_depart[] = "";
 $Adresses_arrivee[] = "";
 $voyage_IDs[] = "";
 $reservation_IDs[]="";
+$dates[]="";
 
 $j = 0;
 
@@ -32,7 +33,7 @@ require_once "../../BDD_login.php";
 
 if (isset($user_ID)) {
 
-    $sql = "SELECT v.heure_depart, v.heure_arrivee, v.prix, v.statut, v.Campus_ID, v.Campus_ID_Depart, v.voyage_ID, r.reservation_ID FROM reservation r JOIN voyages v ON r.voyage_ID = v.voyage_ID WHERE r.user_ID = :user_ID";
+    $sql = "SELECT v.heure_depart, v.heure_arrivee,v.date, v.prix, v.statut, v.Campus_ID, v.Campus_ID_Depart, v.voyage_ID, r.reservation_ID FROM reservation r JOIN voyages v ON r.voyage_ID = v.voyage_ID WHERE r.user_ID = :user_ID";
 
     if ($stmt = $pdo->prepare($sql)) {
         // Lier les paramètres
@@ -54,6 +55,7 @@ if (isset($user_ID)) {
                     $Campus_departs_ID[$i] = $row["Campus_ID_Depart"];
                     $voyage_IDs[$i] = $row["voyage_ID"];
                     $reservation_IDs[$i]=$row["reservation_ID"];
+                    $dates[$i]=$row["date"];
                     $i++;
                 }
             } else {
@@ -198,6 +200,7 @@ unset($pdo);
             echo '<span>Voyage ' . ($i + 1) . ':</span>';
             echo '<span>Heure de départ: ' . $Heures_depart[$i] . '</span>';
             echo '<span>Heure d\'arrivée: ' . $Heures_arrivee[$i] . '</span>';
+            echo '<span>Date: ' . $dates[$i] . '</span>';
             echo '<span>Prix: ' . $prix[$i] . '€</span>';
             echo '<span>Départ: ' . $Adresses_depart[$i] . '</span>';
             echo '<span>Arrivee: ' . $Adresses_arrivee[$i] . '</span>';

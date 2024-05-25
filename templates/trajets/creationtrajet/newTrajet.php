@@ -2,8 +2,8 @@
 // Initialize the session
 session_start();
 
-$adresse_depart = $adresse_arrivee = $prix = $place = $fumeur = $heure_depart = $heure_arrivee = "";
-$adresse_depart_err = $adresse_arrivee_err = $prix_err = $fumeur_err = $place_err = $heure_depart_err = $heure_arrivee_err = "";
+$adresse_depart = $adresse_arrivee = $prix = $place = $fumeur = $heure_depart = $heure_arrivee = $date = "";
+$adresse_depart_err = $adresse_arrivee_err = $prix_err = $fumeur_err = $place_err = $heure_depart_err = $heure_arrivee_err =$date_err = "";
 
 $email = $_SESSION['email'];
 $user_ID = $_SESSION['user_ID'];
@@ -33,6 +33,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $adresse_arrivee_err = "Adress can only contain letters and numbers";
     } else {
         $adresse_arrivee = $_POST["adresse_arrivee"];
+    }
+
+    if (empty(trim($_POST["date"]))) {
+        $date_err = "Please enter a date.";
+    } elseif (!preg_match('/^\d{4}-\d{2}-\d{2}$/', trim($_POST["date"]))) {
+        $date_err = "Date format is incorrect. Please use YYYY-MM-DD.";
+    } else {
+        $date = trim($_POST["date"]);
+        $date_parts = explode('-', $date);
+        if (!checkdate($date_parts[1], $date_parts[2], $date_parts[0])) {
+            $date_err = "Invalid date. Please enter a valid date.";
+        } else {
+            // Crée un objet DateTime pour la date saisie
+            $input_date = new DateTime($date);
+            // Crée un objet DateTime pour la date actuelle
+            $current_date = new DateTime();
+            // Compare les deux dates
+            if ($input_date < $current_date) {
+                $date_err = "The date cannot be in the past. Please enter a date that is today or in the future.";
+            }
+        }
     }
 
 // Validate price
@@ -115,15 +136,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $heure_arrivee = $_POST["heure_arrivee"];
     }
 
-    if (empty($heure_depart_err) && empty($adresse_depart_err) && empty($adresse_arrivee_err) && empty($place_err) && empty($prix_err) && empty($heure_arrivee_err) && empty($fumeur_err)) {
+    if (empty($heure_depart_err) && empty($adresse_depart_err) && empty($adresse_arrivee_err) && empty($place_err) && empty($prix_err) && empty($heure_arrivee_err) && empty($fumeur_err) && empty($date_err)) {
 
         // Prepare an insert statement
-        $sql = "INSERT INTO voyages (heure_depart, heure_arrivee, prix, place, user_ID, Campus_ID_Depart, Campus_ID,fumeur) VALUES (:heure_depart, :heure_arrivee, :prix, :place, :user_ID, :Campus_ID_Depart, :Campus_ID_Arrivee, :fumeur)";
+        $sql = "INSERT INTO voyages (heure_depart, heure_arrivee, date, prix, place, user_ID, Campus_ID_Depart, Campus_ID,fumeur) VALUES (:heure_depart, :heure_arrivee, :date, :prix, :place, :user_ID, :Campus_ID_Depart, :Campus_ID_Arrivee, :fumeur)";
 
         if ($stmt = $pdo->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":heure_depart", $param_heure_depart);
             $stmt->bindParam(":heure_arrivee", $param_heure_arrivee);
+            $stmt->bindParam(":date", $param_date);
             $stmt->bindParam(":prix", $param_prix);
             $stmt->bindParam(":place", $param_place);
             $stmt->bindParam(":user_ID", $param_user_ID);
@@ -137,6 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_Campus_ID_Depart = $Campus_ID_Depart;
             $param_heure_arrivee = $heure_arrivee;
             $param_heure_depart = $heure_depart;
+            $param_date = $date;
             $param_user_ID = $user_ID;
             $param_fumeur = $fumeur;
 
@@ -175,7 +198,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {
-                header("location: ../accueil/main/pagePrincav.php");
+                header("location: ../../accueil/main/pagePrincav.php");
                 exit;
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
@@ -239,44 +262,58 @@ unset($pdo);
         <div class="entry">
             <div class="overlap align">
                 <input autocomplete="off" name="adresse_depart" type="text"
-                       class="text-input <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>"
+                       class="text-input <?php echo (!empty($adresse_depart_err)) ? 'is-invalid' : ''; ?>"
                        id="adresse_depart" value="<?php echo $adresse_depart; ?>" placeholder="Départ" required>
+                <span class="invalid-feedback"><?php echo $adresse_depart_err; ?></span>
             </div>
 
             <div class="overlap align2">
                 <input autocomplete="off" name="adresse_arrivee" type="text"
-                       class="text-input <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>"
+                       class="text-input <?php echo (!empty($adresse_arrivee_err)) ? 'is-invalid' : ''; ?>"
                        value="<?php echo $adresse_arrivee; ?>" id="adresse_arrivee" placeholder="Arrivée" required>
+                <span class="invalid-feedback"><?php echo $adresse_arrivee_err; ?></span>
             </div>
 
             <div class="overlap align3">
                 <input name="heure_depart" type="time"
-                       class="text-input <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>"
+                       class="text-input <?php echo (!empty($heure_depart)) ? 'is-invalid' : ''; ?>"
                        value="<?php echo $heure_depart; ?>" placeholder="Heure de Depart" required>
+                <span class="invalid-feedback"><?php echo $heure_depart_err; ?></span>
             </div>
 
             <div class="overlap align4">
                 <input name="heure_arrivee" type="time"
-                       class="text-input <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>"
+                       class="text-input <?php echo (!empty($heure_arrivee_err)) ? 'is-invalid' : ''; ?>"
                        value="<?php echo $heure_arrivee; ?>" placeholder="Heure d'arrivée" required>
+                <span class="invalid-feedback"><?php echo $heure_arrivee_err; ?></span>
             </div>
 
             <div class="overlap align5">
-                <input name="prix" type="number"
-                       class="text-input <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>"
-                       value="<?php echo $prix; ?>" placeholder="Prix" required>
+                <input name="date" type="date"
+                       class="text-input <?php echo (!empty($date_err)) ? 'is-invalid' : ''; ?>"
+                       value="<?php echo $date; ?>" placeholder="Date ?" required>
+                <span class="invalid-feedback"><?php echo $date_err; ?></span>
             </div>
 
             <div class="overlap align6">
-                <input name="place" type="number"
-                       class="text-input <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>"
-                       value="<?php echo $place; ?>" placeholder="Nombre de places" required>
+                <input name="prix" type="number"
+                       class="text-input <?php echo (!empty($prix_err)) ? 'is-invalid' : ''; ?>"
+                       value="<?php echo $prix; ?>" placeholder="Prix" required>
+                <span class="invalid-feedback"><?php echo $prix_err; ?></span>
             </div>
 
             <div class="overlap align7">
+                <input name="place" type="number"
+                       class="text-input <?php echo (!empty($place_err)) ? 'is-invalid' : ''; ?>"
+                       value="<?php echo $place; ?>" placeholder="Nombre de places" required>
+                <span class="invalid-feedback"><?php echo $place_err; ?></span>
+            </div>
+
+            <div class="overlap align8">
                 <input name="fumeur" type="text"
                        class="text-input <?php echo (!empty($fumeur_err)) ? 'is-invalid' : ''; ?>"
                        value="<?php echo $fumeur; ?>" placeholder="Fumeur ?" required>
+                <span class="invalid-feedback"><?php echo $fumeur_err; ?></span>
             </div>
 
         </div>

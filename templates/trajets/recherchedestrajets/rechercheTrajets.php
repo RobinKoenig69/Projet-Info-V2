@@ -15,6 +15,7 @@ $Heures_arrivee[]="";
 $prix[]="";
 $places[]="";
 $voyage_IDs[]="";
+$dates_depart[]="";
 
 $j=0;
 
@@ -100,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Prepare a select statement
-    $sql = "SELECT heure_depart, heure_arrivee, prix, place, voyage_ID FROM voyages WHERE campus_ID = :Campus_ID_Arrivee AND campus_ID_Depart = :Campus_ID_Depart";
+    $sql = "SELECT heure_depart, heure_arrivee, date, prix, place, voyage_ID FROM voyages WHERE campus_ID = :Campus_ID_Arrivee AND campus_ID_Depart = :Campus_ID_Depart";
 
     if ($stmt = $pdo->prepare($sql)) {
         // Liez les paramètres
@@ -120,6 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $prix[$i]=$row["prix"];
                     $places[$i]=$row["place"];
                     $voyage_IDs[$i]=$row["voyage_ID"];
+                    $dates_depart[$i]=$row["date"];
                     $i++;
                 }
             } else {
@@ -206,6 +208,7 @@ unset($pdo);
             echo '<span>Voyage ' . ($i + 1) . ':</span>';
             echo '<span>Heure de départ: ' . $Heures_depart[$i] . '</span>';
             echo '<span>Heure d\'arrivée: ' . $Heures_arrivee[$i] . '</span>';
+            echo '<span>Date: ' . $dates_depart[$i] . '</span>';
             echo '<span>Prix: ' . $prix[$i] . '€</span>';
             echo '<span>Places: ' . $places[$i] . '</span>';
             echo '<form method="get">';

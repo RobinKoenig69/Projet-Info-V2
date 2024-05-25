@@ -2,10 +2,22 @@
 // Initialize the session
 session_start();
 
+$user_type ="";
+$admin = "admin";
+
+if(isset($_SESSION["type"])){
+    $user_type = $_SESSION["type"];
+}
+
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
-    exit;
+    if (strcmp($user_type, $admin) == 0) {
+        header("Location: ../admin/admin.php");
+        exit();
+    } else {
+        header("Location: ../trajets/mesTrajets/mesTrajets.php");
+        exit();
+    }
 }
 
 // Include config file
@@ -14,9 +26,6 @@ require_once "../BDD_login.php";
 // Define variables and initialize with empty values
 $email = $password = "";
 $email_err = $password_err = $login_err = "";
-
-
-//echo "<h1>TG + ratio</h1>";
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -66,8 +75,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["email"] = $email;
                             $_SESSION["type"] = $user_type;
 
-                            // Redirect user to welcome page
-                            header("location: ../trajets/mesTrajets/mesTrajets.php");
+                            if (strcmp($user_type, $admin) == 0) {
+                                header("Location: ../admin/admin.php");
+                                exit();
+                            } else {
+                                header("Location: ../trajets/mesTrajets/mesTrajets.php");
+                                exit();
+                            }
+
+
+
                         } else{
                             // Password is not valid, display a generic error message
                             $login_err = "Invalid email or password.";

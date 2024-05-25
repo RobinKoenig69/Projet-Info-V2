@@ -13,10 +13,6 @@
   overflow-y: auto;
 }
 
-.bottom-bar{
-
-}
-
 .placeholder-image {
   border-radius: 50%;
   height: 12vw;
@@ -74,6 +70,10 @@
 
 .align7{
   top : 70vh;
+}
+
+.align8{
+  top : 80vh;
 }
 
 .text-input {
