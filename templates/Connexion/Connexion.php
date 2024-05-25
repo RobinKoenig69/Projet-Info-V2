@@ -47,7 +47,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($email_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT user_ID, email, pwd, user_type FROM utilisateur WHERE email = :email";
+        $sql = "SELECT user_ID, email, pwd, user_type, Validated FROM utilisateur WHERE email = :email";
 
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
@@ -64,6 +64,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $email = $row["email"];
                         $hashed_password = $row["pwd"];
                         $user_type = $row["user_type"];
+                        $validated = $row["Validated"];
+
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, so start a new session
                             session_start();
@@ -74,6 +76,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["user_ID"] = $id;
                             $_SESSION["email"] = $email;
                             $_SESSION["type"] = $user_type;
+                            $_SESSION["validated"] = $validated;
 
                             if (strcmp($user_type, $admin) == 0) {
                                 header("Location: ../admin/admin.php");

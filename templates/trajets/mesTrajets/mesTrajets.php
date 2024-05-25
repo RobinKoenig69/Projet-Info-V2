@@ -21,6 +21,8 @@ $voyage_IDs[] = "";
 $reservation_IDs[]="";
 $dates[]="";
 
+$erreur ="";
+
 $j = 0;
 
 if (empty($email)) {
@@ -59,10 +61,10 @@ if (isset($user_ID)) {
                     $i++;
                 }
             } else {
-                echo "Aucun enregistrement trouvé.";
+                $erreur = "Aucun enregistrement trouvé.";
             }
         } else {
-            echo "Oups! Une erreur est survenue. Veuillez réessayer plus tard.";
+            $erreur = "Oups! Une erreur est survenue. Veuillez réessayer plus tard.";
         }
     }
 
@@ -82,10 +84,10 @@ if (isset($user_ID)) {
                         $Adresses_depart[$k] = $row["adresse"];
                     }
                 } else {
-                    echo "Aucun enregistrement trouvé.";
+                    $erreur = "Aucun enregistrement trouvé.";
                 }
             } else {
-                echo "Oups! Une erreur est survenue. Veuillez réessayer plus tard.";
+                $erreur = "Oups! Une erreur est survenue. Veuillez réessayer plus tard.";
             }
         }
     }
@@ -106,10 +108,10 @@ if (isset($user_ID)) {
                         $Adresses_arrivee[$k] = $row["adresse"];
                     }
                 } else {
-                    echo "Aucun enregistrement trouvé.";
+                    $erreur = "Aucun enregistrement trouvé.";
                 }
             } else {
-                echo "Oups! Une erreur est survenue. Veuillez réessayer plus tard.";
+                $erreur = "Oups! Une erreur est survenue. Veuillez réessayer plus tard.";
             }
         }
     }
@@ -132,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->execute()) {
             header("Refresh:0");
         } else {
-            echo "Oops! Something went wrong. Please try again later.";
+            $erreur = "Oops! Something went wrong. Please try again later.";
         }
 
 
@@ -193,7 +195,6 @@ unset($pdo);
 
     <div class="output">
         <?php
-
         // Assurez-vous que tous les tableaux ont la même longueur et que $j est défini
         for ($i = 0; $i < $j; $i++) {
             echo '<div class="flex">';

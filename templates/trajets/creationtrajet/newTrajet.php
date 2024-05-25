@@ -8,8 +8,14 @@ $adresse_depart_err = $adresse_arrivee_err = $prix_err = $fumeur_err = $place_er
 $email = $_SESSION['email'];
 $user_ID = $_SESSION['user_ID'];
 
+
 if (empty($email)) {
     header("location: ../../accueil/main/pagePrincav.php");
+    exit;
+}
+
+if ($_SESSION["validated"] === 0){
+    header("location: warning.php");
     exit;
 }
 
