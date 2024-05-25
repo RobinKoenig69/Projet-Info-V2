@@ -308,6 +308,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <button type='submit' name='deleteUser'>Delete User</button>
                   <button type='submit' name='validate_user'>Validate User</button>
               </form>
+              <br>
+              <br>
              </div>";
         }
         ?>
