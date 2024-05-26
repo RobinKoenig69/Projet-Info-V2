@@ -11,7 +11,7 @@ $adresse_arrivee = $_SESSION["voyage_arrivee"];
 
 $erreur="";
 
-$fumeur = $heure_depart = $heure_arrivee = $prix = $place = "";
+$fumeur = $heure_depart = $heure_arrivee = $prix = $place = $animaux = $recurrent = "";
 
 if (!isset($user_ID)){
     header("Location: ../../accueil/main/pagePrincav.php");
@@ -22,7 +22,7 @@ require_once "../../BDD_login.php";
 
 if (isset($reservation)) {
     // Prepare a select statement
-    $sql = "SELECT heure_depart, heure_arrivee, prix, place, fumeur FROM voyages WHERE voyage_ID = :reservation";
+    $sql = "SELECT heure_depart, heure_arrivee, prix, place, fumeur, animaux, recurrent FROM voyages WHERE voyage_ID = :reservation";
 
     if ($stmt = $pdo->prepare($sql)) {
         // Liez les paramètres
@@ -38,6 +38,8 @@ if (isset($reservation)) {
                     $prix = $row["prix"];
                     $place = $row["place"];
                     $fumeur = $row['fumeur'];
+                    $animaux=$row["animaux"];
+                    $recurrent=$row["recurrent"];
                 }
             } else {
                 $erreur = "No addresses found in the table.";
@@ -141,8 +143,8 @@ unset($pdo);
         <a href="../../trajets/recherchedestrajets/rechercheTrajets.php" target="_blank">
             <img src="../../../images/loupe.png" alt="Placeholder image">
         </a>
-        <a href="../../inscription/ins3/inscription3_profil.php" target="_blank">
-            <img src="../../../images/message.png" alt="Placeholder image">
+        <a href="../../profil/profil.php" target="_blank">
+            <img src="../../../images/user.png"  alt="Placeholder image">
         </a>
         <a href="../../trajets/creationtrajet/newTrajet.php" target="_blank">
             <img src="../../../images/plus1.png" alt="Placeholder image">
@@ -164,6 +166,8 @@ unset($pdo);
         echo '<span>Prix: ' . $prix . '€</span>';
         echo '<span>Places Libres: ' . $place . '</span>';
         echo '<span>Fumeur: ' . $fumeur . '</span>';
+        echo '<span>Animaux: ' . $animaux . '</span>';
+        echo '<span>Recurrent: ' . $recurrent . '</span>';
         echo '</div>';
         echo isset($erreur) ? $erreur : '';
         ?>

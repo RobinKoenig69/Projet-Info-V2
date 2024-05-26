@@ -2,8 +2,8 @@
 // Initialize the session
 session_start();
 
-$adresse_depart = $adresse_arrivee = $prix = $place = $fumeur = $heure_depart = $heure_arrivee = $date = "";
-$adresse_depart_err = $adresse_arrivee_err = $prix_err = $fumeur_err = $place_err = $heure_depart_err = $heure_arrivee_err =$date_err = "";
+$adresse_depart = $adresse_arrivee = $prix = $place = $fumeur = $heure_depart = $heure_arrivee = $date = $animaux = $recurrent = "";
+$adresse_depart_err = $adresse_arrivee_err = $prix_err = $fumeur_err = $place_err = $heure_depart_err = $heure_arrivee_err =$date_err = $animaux_err = $recurrent_err = "";
 
 $email = $_SESSION['email'];
 $user_ID = $_SESSION['user_ID'];
@@ -39,6 +39,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $adresse_arrivee_err = "Adress can only contain letters and numbers";
     } else {
         $adresse_arrivee = $_POST["adresse_arrivee"];
+    }
+
+    if (empty(trim($_POST["animaux"]))) {
+        $animaux_err = "Please enter your preference.";
+    } elseif (!preg_match('/^[a-zA-Z0-9, ]+$/', trim($_POST["animaux"]))) {
+        $animaux_err = "Preferences can only contain letters and numbers";
+    } else {
+        $animaux = $_POST["animaux"];
+    }
+
+    if (empty(trim($_POST["recurrent"]))) {
+        $recurrent_err = "Enter the frequency.";
+    } elseif (!preg_match('/^[a-zA-Z0-9, ]+$/', trim($_POST["recurrent"]))) {
+        $recurrent_err = "Recurrence can only contain letters and numbers";
+    } else {
+        $recurrent = $_POST["recurrent"];
     }
 
     if (empty(trim($_POST["date"]))) {
@@ -142,10 +158,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $heure_arrivee = $_POST["heure_arrivee"];
     }
 
-    if (empty($heure_depart_err) && empty($adresse_depart_err) && empty($adresse_arrivee_err) && empty($place_err) && empty($prix_err) && empty($heure_arrivee_err) && empty($fumeur_err) && empty($date_err)) {
+    if (empty($heure_depart_err) && empty($adresse_depart_err) && empty($adresse_arrivee_err) && empty($place_err) && empty($prix_err) && empty($heure_arrivee_err) && empty($fumeur_err) && empty($date_err) && empty($animaux_err) && empty($recurrent_err)){
 
         // Prepare an insert statement
-        $sql = "INSERT INTO voyages (heure_depart, heure_arrivee, date, prix, place, user_ID, Campus_ID_Depart, Campus_ID,fumeur) VALUES (:heure_depart, :heure_arrivee, :date, :prix, :place, :user_ID, :Campus_ID_Depart, :Campus_ID_Arrivee, :fumeur)";
+        $sql = "INSERT INTO voyages (heure_depart, heure_arrivee, date, prix, place, user_ID, Campus_ID_Depart, Campus_ID,fumeur, animaux, recurrent) VALUES (:heure_depart, :heure_arrivee, :date, :prix, :place, :user_ID, :Campus_ID_Depart, :Campus_ID_Arrivee, :fumeur, :animaux, :recurrent)";
 
         if ($stmt = $pdo->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
@@ -158,6 +174,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bindParam(":Campus_ID_Depart", $param_Campus_ID_Depart);
             $stmt->bindParam(":Campus_ID_Arrivee", $param_Campus_ID_Arrivee);
             $stmt->bindParam(":fumeur", $param_fumeur);
+            $stmt->bindParam(":animaux", $param_animaux);
+            $stmt->bindParam(":recurrent", $param_recurrent);
 
             $param_prix = $prix;
             $param_place = $place;
@@ -168,6 +186,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_date = $date;
             $param_user_ID = $user_ID;
             $param_fumeur = $fumeur;
+            $param_animaux = $animaux;
+            $param_recurrent = $recurrent;
 
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {
@@ -213,7 +233,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Close statement
             unset($stmt);
         }
-
     }
 }
 // Close connection
@@ -246,8 +265,8 @@ unset($pdo);
         <a href="../../trajets/recherchedestrajets/rechercheTrajets.php" target="_blank">
             <img src="../../../images/loupe.png" alt="Placeholder image">
         </a>
-        <a href="../../inscription/ins3/inscription3_profil.php" target="_blank">
-            <img src="../../../images/message.png" alt="Placeholder image">
+        <a href="../../profil/profil.php" target="_blank">
+            <img src="../../../images/user.png"  alt="Placeholder image">
         </a>
         <a href="../../trajets/creationtrajet/newTrajet.php" target="_blank">
             <img src="../../../images/plus1.png" alt="Placeholder image">
@@ -322,6 +341,19 @@ unset($pdo);
                 <span class="invalid-feedback"><?php echo $fumeur_err; ?></span>
             </div>
 
+            <div class="overlap align9">
+                <input name="animaux" type="text"
+                       class="text-input <?php echo (!empty($animaux_err)) ? 'is-invalid' : ''; ?>"
+                       value="<?php echo $animaux; ?>" placeholder="Animaux acceptés ?" required>
+                <span class="invalid-feedback"><?php echo $animaux_err; ?></span>
+            </div>
+
+            <div class="overlap align10">
+                <input name="recurrent" type="text"
+                       class="text-input <?php echo (!empty($recurrent_err)) ? 'is-invalid' : ''; ?>"
+                       value="<?php echo $recurrent; ?>" placeholder="Trajet recurrent ?" required>
+                <span class="invalid-feedback"><?php echo $recurrent_err; ?></span>
+            </div>
         </div>
             <input type="submit" class="avatar" value="Valider"></input>
         </form>

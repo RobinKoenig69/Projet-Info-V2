@@ -116,6 +116,32 @@
   bottom: 1vh;
 }
 
+.delete_account{
+  position: absolute;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  top: 82vh;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centre l'image parfaitement dans le logo-background */
+  background-color: red;
+}
+
+.delete_account2{
+  position: absolute;
+  color: white;
+  font-weight: bold;
+  font-size: xxx-large;
+  border: none;
+  border-radius: 20px;
+  top: 50vh;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centre l'image parfaitement dans le logo-background */
+  background-color: red;
+}
+
+
 @media screen and (max-width: 700px) {
   .connexion {
     font-size: 40px;

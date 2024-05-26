@@ -1,14 +1,10 @@
 .entry{
   flex-direction: column;
-
   width: 100%;
-
   position: absolute;
   left: 50%;
   transform: translate(-50%, -50%); /* Centre l'image parfaitement dans le logo-background */
-
-  top: 50vh;
-
+  top: 55vh;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -32,11 +28,13 @@
 
 .connexion {
   top: 20vh;
+  z-index: 5000;
 }
 
 .connexion2 {
   top: 25vh;
   width: 70%;
+  z-index: 5000;
 }
 
 .overlap {
@@ -79,6 +77,14 @@
 
 .align8{
   top : 80vh;
+}
+
+.align9{
+  top : 90vh;
+}
+
+.align10{
+  top : 100vh;
 }
 
 .text-input {

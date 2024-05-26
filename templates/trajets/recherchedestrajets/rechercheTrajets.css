@@ -139,6 +139,7 @@
   left: 50%;
   height: 20vh;
   transform: translate(-50%); /* Centre l'image parfaitement dans le logo-background */
+  width: 80%;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -154,6 +155,7 @@
   left: 50%;
   height: 20vh;
   transform: translate(-50%); /* Centre l'image parfaitement dans le logo-background */
+  width: 80%;
 }
 
 .flex {

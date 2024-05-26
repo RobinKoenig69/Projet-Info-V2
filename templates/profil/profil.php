@@ -88,8 +88,8 @@ unset($pdo);
         <a href="../trajets/recherchedestrajets/rechercheTrajets.php" target="_blank">
             <img src="../../images/loupe.png"  alt="Placeholder image">
         </a>
-        <a href="../inscription/ins3/inscription3_profil.php" target="_blank">
-            <img src="../../images/message.png"  alt="Placeholder image">
+        <a href="../profil/profil.php" target="_blank">
+            <img src="../../images/user.png"  alt="Placeholder image">
         </a>
         <a href="../trajets/creationtrajet/newTrajet.php" target="_blank">
             <img src="../../images/plus1.png"  alt="Placeholder image">

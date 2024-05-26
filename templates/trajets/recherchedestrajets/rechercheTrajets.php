@@ -16,6 +16,9 @@ $prix[]="";
 $places[]="";
 $voyage_IDs[]="";
 $dates_depart[]="";
+$fumeurs[]="";
+$recurrents[]="";
+$animaux[]="";
 
 $j=0;
 
@@ -101,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Prepare a select statement
-    $sql = "SELECT heure_depart, heure_arrivee, date, prix, place, voyage_ID FROM voyages WHERE campus_ID = :Campus_ID_Arrivee AND campus_ID_Depart = :Campus_ID_Depart";
+    $sql = "SELECT heure_depart, heure_arrivee, date, prix, place, voyage_ID, fumeur, animaux, recurrent FROM voyages WHERE campus_ID = :Campus_ID_Arrivee AND campus_ID_Depart = :Campus_ID_Depart";
 
     if ($stmt = $pdo->prepare($sql)) {
         // Liez les paramètres
@@ -122,6 +125,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $places[$i]=$row["place"];
                     $voyage_IDs[$i]=$row["voyage_ID"];
                     $dates_depart[$i]=$row["date"];
+                    $recurrents[$i]=$row["recurrent"];
+                    $animaux[$i]=$row["animaux"];
+                    $fumeurs[$i]=$row["fumeur"];
                     $i++;
                 }
             } else {
@@ -164,8 +170,8 @@ unset($pdo);
         <a href="../../trajets/recherchedestrajets/rechercheTrajets.php" target="_blank">
             <img src="../../../images/loupe.png" alt="Placeholder image">
         </a>
-        <a href="../../inscription/ins3/inscription3_profil.php" target="_blank">
-            <img src="../../../images/message.png" alt="Placeholder image">
+        <a href="../../profil/profil.php" target="_blank">
+            <img src="../../../images/user.png"  alt="Placeholder image">
         </a>
         <a href="../../trajets/creationtrajet/newTrajet.php" target="_blank">
             <img src="../../../images/plus1.png" alt="Placeholder image">
@@ -211,6 +217,9 @@ unset($pdo);
             echo '<span>Date: ' . $dates_depart[$i] . '</span>';
             echo '<span>Prix: ' . $prix[$i] . '€</span>';
             echo '<span>Places: ' . $places[$i] . '</span>';
+            echo '<span>Fumeur: ' . $fumeurs[$i] . '</span>';
+            echo '<span>Animaux: ' . $animaux[$i] . '</span>';
+            echo '<span>Recurrent: ' . $recurrents[$i] . '</span>';
             echo '<form method="get">';
             echo '<input type="hidden" name="voyage_id" value="' . $voyage_IDs[$i] . '">';
             echo '<button type="submit">Réserver</button>';
