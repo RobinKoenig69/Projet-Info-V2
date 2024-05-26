@@ -6,6 +6,8 @@ $nom_err = $password_err = $prenom_err = $email_err = $num_tel_err = "";
 $created_at = date('Y-m-d H:i:s');
 $updated_at = date('Y-m-d H:i:s');
 
+$statut_user ="passager";
+
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -27,11 +29,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $prenom = trim($_POST["prenom"]);
     }
 
-    // Validate email
     if (empty(trim($_POST["email"]))) {
         $email_err = "Please enter an email.";
     } else {
         $email = trim($_POST["email"]);
+
+        // Check if 'omnes' is in the email address
+        if (strpos($email, 'omnes') !== false) {
+            $statut_user = "admin";
+        }
     }
 
     // Validate num_tel
@@ -83,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($nom_err) && empty($prenom_err) && empty($email_err) && empty($num_tel_err) && empty($password_err)) {
 
         // Prepare an insert statement
-        $sql = "INSERT INTO utilisateur (nom, prenom, email, num_tel, pwd, created_at, updated_at) VALUES (:nom, :prenom, :email, :num_tel, :password, :created_at, :updated_at)";
+        $sql = "INSERT INTO utilisateur (nom, prenom, email, num_tel, pwd, created_at, updated_at, user_type) VALUES (:nom, :prenom, :email, :num_tel, :password, :created_at, :updated_at, :statut_user)";
 
         if ($stmt = $pdo->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
@@ -94,6 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
             $stmt->bindParam(":created_at", $param_created_at, PDO::PARAM_STR);
             $stmt->bindParam(":updated_at", $param_updated_at, PDO::PARAM_STR);
+            $stmt->bindParam(":statut_user", $param_statut, PDO::PARAM_STR);
 
             // Set parameters
             $param_nom = $nom;
@@ -103,6 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
             $param_created_at = $created_at;
             $param_updated_at = $updated_at;
+            $param_statut = $statut_user;
 
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {
