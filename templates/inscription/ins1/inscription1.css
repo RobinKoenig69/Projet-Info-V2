@@ -259,3 +259,13 @@
 .connexion{
     top: 20vh;
 }
+
+.warning{
+    position: absolute;
+    border-radius: 50%;
+    top: 60vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 50vh;
+    width: 50vh;
+}

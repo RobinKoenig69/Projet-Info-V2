@@ -9,6 +9,11 @@ $file_err ="";
 session_start();
 $email = $_SESSION["email"];
 
+if (!isset($_SESSION["validated"])){
+    header("Location: ../../accueil/main/pagePrincav.php");
+    exit;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo $email;
     if (isset($_FILES['screenshot']) && $_FILES['screenshot']['error'] === 0) {

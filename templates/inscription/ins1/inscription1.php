@@ -1,12 +1,19 @@
 <?php
 require_once '../../BDD_login.php';  // Connexion à la base de données
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require '../../../PHPMailer/src/Exception.php';
+require '../../../PHPMailer/src/PHPMailer.php';
+require '../../../PHPMailer/src/SMTP.php';
+
 $nom = $prenom = $email = $num_tel = $password = "";
 $nom_err = $password_err = $prenom_err = $email_err = $num_tel_err = "";
 $created_at = date('Y-m-d H:i:s');
 $updated_at = date('Y-m-d H:i:s');
 
-$statut_user ="passager";
+$statut_user = "passager";
 
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -29,8 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $prenom = trim($_POST["prenom"]);
     }
 
+    // Validate email
     if (empty(trim($_POST["email"]))) {
         $email_err = "Please enter an email.";
+    } elseif (!filter_var(trim($_POST["email"]), FILTER_VALIDATE_EMAIL)) {
+        $email_err = "Invalid email format.";
     } else {
         $email = trim($_POST["email"]);
 
@@ -58,11 +68,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = trim($_POST["password"]);
     }
 
-    {
+    // Check if username already exists
+    if (empty($nom_err)) {
         // Prepare a select statement
         $sql = "SELECT user_ID FROM utilisateur WHERE nom = :nom";
 
-        if($stmt = $pdo->prepare($sql)){
+        if ($stmt = $pdo->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":nom", $param_nom, PDO::PARAM_STR);
 
@@ -70,13 +81,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_nom = trim($_POST["nom"]);
 
             // Attempt to execute the prepared statement
-            if($stmt->execute()){
-                if($stmt->rowCount() == 1){
+            if ($stmt->execute()) {
+                if ($stmt->rowCount() == 1) {
                     $nom_err = "This username is already taken.";
-                } else{
-                    $nom = trim($_POST["nom"]);
                 }
-            } else{
+            } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
 
@@ -89,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($nom_err) && empty($prenom_err) && empty($email_err) && empty($num_tel_err) && empty($password_err)) {
 
         // Prepare an insert statement
-        $sql = "INSERT INTO utilisateur (nom, prenom, email, num_tel, pwd, created_at, updated_at, user_type) VALUES (:nom, :prenom, :email, :num_tel, :password, :created_at, :updated_at, :statut_user)";
+        $sql = "INSERT INTO utilisateur (nom, prenom, email, num_tel, pwd, created_at, updated_at, user_type, verification_token) VALUES (:nom, :prenom, :email, :num_tel, :password, :created_at, :updated_at, :statut_user, :verification_token)";
 
         if ($stmt = $pdo->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
@@ -100,7 +109,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
             $stmt->bindParam(":created_at", $param_created_at, PDO::PARAM_STR);
             $stmt->bindParam(":updated_at", $param_updated_at, PDO::PARAM_STR);
-            $stmt->bindParam(":statut_user", $param_statut, PDO::PARAM_STR);
+            $stmt->bindParam(":statut_user", $param_statut_user, PDO::PARAM_STR);
+            $stmt->bindParam(":verification_token", $param_verification_token, PDO::PARAM_STR);
 
             // Set parameters
             $param_nom = $nom;
@@ -110,14 +120,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
             $param_created_at = $created_at;
             $param_updated_at = $updated_at;
-            $param_statut = $statut_user;
+            $param_statut_user = $statut_user;
+            $param_verification_token = bin2hex(random_bytes(16)); // Generate a random token
 
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {
-                session_start();
+                // Démarrer la session si elle n'est pas déjà démarrée
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
                 $_SESSION["email"] = $email;
-                header("Location: ../ins2/inscription2.php");
-                exit;
+
+                $mail = new PHPMailer(true);
+
+                try {
+                    // Configuration du serveur SMTP
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp-relay.brevo.com'; // Utilisez le serveur SMTP de votre choix
+                    $mail->SMTPAuth = true;
+                    $mail->Username = '757c06001@smtp-brevo.com'; // Votre adresse email SMTP
+                    $mail->Password = 'cDJNdYL8WXGMO1H9'; // Votre mot de passe SMTP
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                    $mail->Port = 587;
+
+                    // Destinataire
+                    $mail->setFrom('noreply@blablaomnes.com', 'Mailer');
+                    $mail->addAddress($email);
+
+                    // Contenu de l'email
+                    $mail->isHTML(true);
+                    $mail->Subject = 'Email Verification';
+                    $mail->Body    = 'Please click the link below to verify your email address: ' . "<br>";
+                    $mail->Body   .= 'http://localhost/Mes%20sites/Projet-Info-V2/templates/inscription/ins1/verification_success.php?token=' . $param_verification_token;
+
+                    $mail->send();
+                    // Redirection après succès de l'inscription
+                    header("Location: warning.php");
+                    exit;
+                } catch (Exception $e) {
+                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                }
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -131,6 +173,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     unset($pdo);
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>
